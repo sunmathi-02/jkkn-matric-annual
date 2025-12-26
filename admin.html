@@ -3,383 +3,711 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JKKN Matriculation Higher Secondary School | 56th Annual Day</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&family=Bebas+Neue&family=Great+Vibes&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <title>Admin Panel | JKKN 56th Annual Day</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
-        :root { --jkkn-green: #0a4d28; --jkkn-yellow: #ffcc00; --deep-black: #020d07; --gold-gradient: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c); }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Outfit', sans-serif; background: var(--deep-black); color: white; overflow-x: hidden; }
-        #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at center, #0e3a1f, #020d07); }
-        
-        .nav-bar { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 10px 40px; z-index: 2000; background: rgba(10,77,40,0.9); backdrop-filter: blur(20px); border-bottom: 3px solid var(--jkkn-yellow); }
-        .nav-bar img { height: 55px; width: 55px; border-radius: 50%; background: white; padding: 4px; border: 2px solid var(--jkkn-yellow); }
-        .nav-bar h1 { font-family: 'Bebas Neue', sans-serif; color: var(--jkkn-yellow); font-size: clamp(0.8rem, 3.5vw, 1.6rem); text-align: center; flex-grow: 1; }
-
-        .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 20px 60px; }
-        .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2.2rem, 7vw, 4.5rem); margin-bottom: 12px; text-shadow: 0 0 30px rgba(255,204,0,0.3); }
-
-        /* BIG COUNTDOWN */
-        .countdown-wrapper { margin-top: 45px; padding: 35px 45px; background: linear-gradient(145deg, rgba(10,77,40,0.85), rgba(6,50,25,0.9)); border-radius: 30px; border: 4px solid var(--jkkn-yellow); box-shadow: 0 0 80px rgba(255,204,0,0.25); }
-        .countdown-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--jkkn-yellow); letter-spacing: 5px; margin-bottom: 25px; }
-        .countdown-container { display: flex; gap: 25px; justify-content: center; flex-wrap: wrap; }
-        .countdown-unit { width: 130px; height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); border-radius: 20px; border: 3px solid rgba(255,204,0,0.5); box-shadow: 0 15px 40px rgba(0,0,0,0.5); position: relative; }
-        .countdown-unit svg { position: absolute; width: 100%; height: 100%; transform: rotate(-90deg); }
-        .countdown-unit circle { fill: none; stroke-width: 4; }
-        .circle-bg { stroke: rgba(255,255,255,0.1); }
-        .circle-progress { stroke: var(--jkkn-yellow); stroke-dasharray: 350; filter: drop-shadow(0 0 12px var(--jkkn-yellow)); transition: 1s; }
-        .countdown-number { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--jkkn-yellow); text-shadow: 0 0 25px rgba(255,204,0,0.9); z-index: 1; }
-        .countdown-label { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.85); z-index: 1; margin-top: 5px; font-weight: 600; }
-        .event-date-banner { margin-top: 30px; padding: 16px 40px; background: var(--jkkn-yellow); color: var(--jkkn-green); font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 3px; border-radius: 50px; display: inline-block; box-shadow: 0 10px 40px rgba(255,204,0,0.5); animation: pulseBanner 2s ease-in-out infinite; }
-        @keyframes pulseBanner { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
-
-        .invitation-wrap { perspective: 1000px; padding: 70px 20px; display: flex; justify-content: center; }
-        .invite-card { width: 100%; max-width: 700px; background: #fff; color: #111; padding: 55px 35px; text-align: center; border: 12px solid transparent; border-image: var(--gold-gradient) 1; box-shadow: 0 30px 80px rgba(0,0,0,0.8); }
-        .script-font { font-family: 'Great Vibes', cursive; font-size: 3.2rem; color: var(--jkkn-green); margin-bottom: 10px; }
-        .highlight-date { display: inline-block; margin: 18px 0; padding: 12px 25px; background: var(--jkkn-green); color: var(--jkkn-yellow); font-weight: 900; transform: skew(-10deg); font-size: 1.3rem; }
-
-        .section-title { text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--jkkn-yellow); margin: 50px 0 35px; }
-        .guest-grid { display: flex; justify-content: center; gap: 35px; flex-wrap: wrap; max-width: 1000px; margin: auto; padding: 0 20px; }
-        .guest-card { width: 340px; background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); border-radius: 25px; padding: 28px 22px; text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; position: relative; }
-        .guest-card:hover { transform: translateY(-8px); border-color: var(--jkkn-yellow); }
-        .guest-photo-wrap { width: 120px; height: 120px; margin: 0 auto 15px; border-radius: 50%; padding: 4px; background: var(--gold-gradient); }
-        .guest-photo { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid #051a0f; }
-        .guest-role { display: inline-block; background: var(--jkkn-green); color: var(--jkkn-yellow); padding: 4px 14px; border-radius: 18px; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; margin-bottom: 8px; }
-        .guest-card h3 { font-size: 1.4rem; margin-bottom: 4px; }
-        .guest-card .designation { opacity: 0.7; font-size: 0.78rem; margin-bottom: 12px; line-height: 1.5; }
-        .guest-highlights { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; }
-        .highlight-tag { background: rgba(255,204,0,0.15); color: var(--jkkn-yellow); padding: 4px 10px; border-radius: 15px; font-size: 0.62rem; font-weight: 600; border: 1px solid rgba(255,204,0,0.3); }
-        .alumni-badge { position: absolute; top: 12px; right: 12px; background: var(--jkkn-yellow); color: var(--jkkn-green); padding: 4px 10px; border-radius: 12px; font-size: 0.55rem; font-weight: 800; }
-
-        .promo-section { padding: 50px 20px; max-width: 1300px; margin: 0 auto; }
-        .promo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; margin-top: 25px; }
-        .promo-card { background: rgba(255,255,255,0.05); border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; cursor: pointer; }
-        .promo-card:hover { transform: translateY(-6px); border-color: var(--jkkn-yellow); }
-        .promo-card img, .promo-card video { width: 100%; height: 180px; object-fit: cover; }
-        .promo-card .promo-info { padding: 14px; }
-        .promo-card h4 { color: var(--jkkn-yellow); margin-bottom: 4px; font-size: 0.95rem; }
-        .promo-card p { opacity: 0.6; font-size: 0.8rem; }
-        .no-content-message { text-align: center; padding: 45px; color: rgba(255,255,255,0.4); grid-column: 1 / -1; }
-
-        .timeline-section { padding: 50px 20px; }
-        .timeline-wrapper { position: relative; max-width: 850px; margin: auto; }
-        .timeline-line { position: absolute; left: 50%; width: 2px; height: 100%; background: linear-gradient(to bottom, transparent, var(--jkkn-yellow), transparent); transform: translateX(-50%); }
-        .timeline-item { display: flex; justify-content: flex-end; padding-right: 50%; position: relative; margin-bottom: 25px; }
-        .timeline-item.right { justify-content: flex-start; padding-right: 0; padding-left: 50%; }
-        .timeline-dot { position: absolute; left: 50%; top: 18px; width: 12px; height: 12px; background: var(--jkkn-yellow); border: 3px solid var(--deep-black); border-radius: 50%; transform: translateX(-50%); z-index: 2; }
-        .timeline-card { background: rgba(255,255,255,0.05); padding: 18px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.1); width: 85%; margin: 0 12px; transition: 0.3s; }
-        .timeline-card:hover { border-color: var(--jkkn-yellow); }
-        .timeline-card h3 { color: var(--jkkn-yellow); font-size: 0.95rem; margin-bottom: 4px; }
-        .timeline-card p { opacity: 0.7; font-size: 0.8rem; }
-        .event-num { position: absolute; top: 8px; right: 12px; font-family: 'Bebas Neue'; font-size: 1.3rem; color: rgba(255,204,0,0.2); }
-
-        .map-section { padding: 50px 20px; text-align: center; }
-        .map-container { max-width: 950px; margin: 25px auto; border-radius: 18px; overflow: hidden; border: 4px solid var(--jkkn-yellow); }
-        
-        .contact-footer { background: #010804; border-top: 3px solid var(--jkkn-yellow); padding: 50px 35px 25px; }
-        .footer-grid { max-width: 1000px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
-        .footer-info h3 { color: var(--jkkn-yellow); font-family: 'Bebas Neue'; font-size: 1.6rem; margin-bottom: 12px; }
-        .footer-info p { opacity: 0.7; line-height: 1.6; font-size: 0.85rem; }
-        .footer-links a { display: block; color: white; text-decoration: none; margin-bottom: 8px; opacity: 0.6; font-size: 0.85rem; transition: 0.3s; }
-        .footer-links a:hover { opacity: 1; color: var(--jkkn-yellow); }
-
-        .reveal { opacity: 0; transform: translateY(35px); transition: 0.9s; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* CHATBOT */
-        .chatbot-container { position: fixed; bottom: 25px; right: 25px; z-index: 9999; }
-        .chatbot-toggle { width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(145deg, var(--jkkn-green), #0d6930); border: 4px solid var(--jkkn-yellow); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 35px rgba(0,0,0,0.5), 0 0 30px rgba(255,204,0,0.4); transition: 0.3s; animation: botPulse 2s infinite; }
-        .chatbot-toggle:hover { transform: scale(1.1); }
-        @keyframes botPulse { 0%, 100% { box-shadow: 0 8px 35px rgba(0,0,0,0.5), 0 0 30px rgba(255,204,0,0.4); } 50% { box-shadow: 0 8px 35px rgba(0,0,0,0.5), 0 0 50px rgba(255,204,0,0.6); } }
-        .bot-face { width: 45px; height: 45px; position: relative; }
-        .bot-eyes { display: flex; justify-content: space-between; padding: 0 5px; }
-        .bot-eye { width: 12px; height: 12px; background: var(--jkkn-yellow); border-radius: 50%; animation: eyeBlink 3s infinite; }
-        @keyframes eyeBlink { 0%, 90%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
-        .bot-mouth { width: 20px; height: 9px; background: var(--jkkn-yellow); border-radius: 0 0 10px 10px; margin: 8px auto 0; }
-        .bot-antenna { width: 4px; height: 12px; background: var(--jkkn-yellow); margin: 0 auto 5px; border-radius: 2px; position: relative; }
-        .bot-antenna::after { content: ''; position: absolute; top: -7px; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: var(--jkkn-yellow); border-radius: 50%; animation: antennaPulse 1s infinite; }
-        @keyframes antennaPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-
-        .chat-window { position: absolute; bottom: 85px; right: 0; width: 380px; max-width: calc(100vw - 40px); height: 500px; max-height: calc(100vh - 140px); background: linear-gradient(145deg, #0a4d28, #063d1c); border-radius: 22px; border: 3px solid var(--jkkn-yellow); box-shadow: 0 25px 70px rgba(0,0,0,0.7); display: none; flex-direction: column; overflow: hidden; }
-        .chat-window.active { display: flex; animation: slideUp 0.3s ease; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .chat-header { background: var(--jkkn-green); padding: 15px 18px; display: flex; align-items: center; gap: 12px; border-bottom: 3px solid var(--jkkn-yellow); }
-        .chat-header-icon { width: 42px; height: 42px; background: var(--jkkn-yellow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
-        .chat-header-info h4 { color: var(--jkkn-yellow); font-size: 1rem; margin-bottom: 2px; }
-        .chat-header-info p { color: rgba(255,255,255,0.7); font-size: 0.7rem; }
-        .chat-close { margin-left: auto; background: none; border: none; color: var(--jkkn-yellow); font-size: 1.6rem; cursor: pointer; }
-        .chat-messages { flex: 1; padding: 18px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
-        .chat-messages::-webkit-scrollbar { width: 5px; }
-        .chat-messages::-webkit-scrollbar-thumb { background: var(--jkkn-yellow); border-radius: 5px; }
-        .message { max-width: 85%; padding: 12px 16px; border-radius: 18px; font-size: 0.88rem; line-height: 1.55; animation: msgPop 0.3s ease; }
-        @keyframes msgPop { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
-        .message.bot { background: rgba(255,255,255,0.1); color: white; align-self: flex-start; border-bottom-left-radius: 5px; }
-        .message.user { background: var(--jkkn-yellow); color: var(--jkkn-green); align-self: flex-end; border-bottom-right-radius: 5px; font-weight: 600; }
-        .typing-indicator { display: none; align-self: flex-start; padding: 14px 18px; background: rgba(255,255,255,0.1); border-radius: 18px; }
-        .typing-indicator.active { display: flex; gap: 5px; }
-        .typing-indicator span { width: 8px; height: 8px; background: var(--jkkn-yellow); border-radius: 50%; animation: typingBounce 1s infinite; }
-        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
-        .quick-replies { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 15px 12px; }
-        .quick-reply { background: rgba(255,204,0,0.15); color: var(--jkkn-yellow); border: 1px solid rgba(255,204,0,0.4); padding: 7px 12px; border-radius: 18px; font-size: 0.72rem; cursor: pointer; transition: 0.3s; font-family: 'Outfit'; }
-        .quick-reply:hover { background: var(--jkkn-yellow); color: var(--jkkn-green); }
-        .chat-input-area { padding: 12px; border-top: 2px solid rgba(255,204,0,0.3); display: flex; gap: 8px; }
-        .chat-input { flex: 1; padding: 11px 16px; border: 2px solid rgba(255,204,0,0.3); border-radius: 22px; background: rgba(255,255,255,0.1); color: white; font-size: 0.88rem; font-family: 'Outfit'; }
-        .chat-input:focus { outline: none; border-color: var(--jkkn-yellow); }
-        .chat-input::placeholder { color: rgba(255,255,255,0.5); }
-        .chat-send { width: 42px; height: 42px; border-radius: 50%; background: var(--jkkn-yellow); border: none; cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
-        .chat-send:hover { transform: scale(1.1); }
-
-        /* Modals */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 10000; justify-content: center; align-items: center; }
-        .modal-overlay.active { display: flex; }
-        .modal-close { position: absolute; top: 25px; right: 25px; width: 45px; height: 45px; background: var(--jkkn-green); border: 2px solid var(--jkkn-yellow); border-radius: 50%; color: var(--jkkn-yellow); font-size: 1.4rem; cursor: pointer; }
-        .lightbox img, .video-modal video { max-width: 90%; max-height: 85%; border-radius: 12px; border: 3px solid var(--jkkn-yellow); }
-        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 45px; height: 45px; background: rgba(10,77,40,0.8); border: 2px solid var(--jkkn-yellow); border-radius: 50%; color: var(--jkkn-yellow); font-size: 1.3rem; cursor: pointer; }
-        .prev-btn { left: 25px; }
-        .next-btn { right: 25px; }
-        .admin-login-card { background: linear-gradient(145deg, #0a4d28, #063d1c); padding: 35px; border-radius: 22px; border: 3px solid var(--jkkn-yellow); max-width: 360px; width: 90%; text-align: center; position: relative; }
-        .admin-login-card h2 { font-family: 'Bebas Neue'; color: var(--jkkn-yellow); font-size: 1.8rem; margin-bottom: 22px; }
-        .admin-login-card input { width: 100%; padding: 13px; margin-bottom: 10px; border: 2px solid rgba(255,204,0,0.3); border-radius: 10px; background: rgba(255,255,255,0.1); color: white; font-size: 0.95rem; }
-        .admin-login-card input:focus { outline: none; border-color: var(--jkkn-yellow); }
-        .admin-login-card button { width: 100%; padding: 13px; background: var(--jkkn-yellow); color: var(--jkkn-green); border: none; border-radius: 10px; font-size: 1rem; font-weight: 800; cursor: pointer; margin-top: 8px; }
-        .login-error { color: #ff6b6b; font-size: 0.82rem; margin-bottom: 8px; display: none; }
-        .login-error.show { display: block; }
-
-        @media (max-width: 768px) {
-            .nav-bar { padding: 8px 15px; }
-            .nav-bar img { height: 45px; width: 45px; }
-            .countdown-container { gap: 15px; }
-            .countdown-unit { width: 100px; height: 120px; }
-            .countdown-number { font-size: 3rem; }
-            .countdown-wrapper { padding: 25px 20px; margin: 30px 15px; }
-            .timeline-line { left: 18px; }
-            .timeline-dot { left: 18px; }
-            .timeline-item, .timeline-item.right { padding-left: 38px; padding-right: 0; justify-content: flex-start; }
-            .guest-card { width: 100%; }
-            .chat-window { width: calc(100vw - 30px); right: -10px; }
-            .chatbot-container { bottom: 15px; right: 15px; }
+        :root {
+            --jkkn-green: #0a4d28;
+            --jkkn-yellow: #ffcc00;
+            --deep-black: #020d07;
+            --success-green: #28a745;
+            --danger-red: #dc3545;
         }
-        @media (max-width: 480px) {
-            .countdown-unit { width: 72px; height: 90px; }
-            .countdown-number { font-size: 2rem; }
-            .countdown-label { font-size: 0.6rem; letter-spacing: 1px; }
-            .event-date-banner { font-size: 0.95rem; padding: 12px 20px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background: linear-gradient(135deg, #020d07, #0a2015, #041209); min-height: 100vh; color: white; }
+
+        /* Login */
+        .login-screen { display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .login-screen.hidden { display: none; }
+        .login-card { background: linear-gradient(145deg, rgba(10,77,40,0.95), rgba(6,61,28,0.95)); padding: 50px 40px; border-radius: 30px; border: 3px solid var(--jkkn-yellow); max-width: 400px; width: 100%; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+        .login-card .logo { font-size: 4rem; margin-bottom: 10px; }
+        .login-card h2 { font-family: 'Bebas Neue', sans-serif; color: var(--jkkn-yellow); font-size: 2rem; letter-spacing: 3px; margin-bottom: 30px; }
+        .login-card input { width: 100%; padding: 15px; margin-bottom: 15px; border: 2px solid rgba(255,204,0,0.3); border-radius: 12px; background: rgba(255,255,255,0.1); color: white; font-size: 1rem; }
+        .login-card input:focus { outline: none; border-color: var(--jkkn-yellow); }
+        .login-card input::placeholder { color: rgba(255,255,255,0.5); }
+        .login-btn { width: 100%; padding: 15px; background: var(--jkkn-yellow); color: var(--jkkn-green); border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 800; cursor: pointer; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px; }
+        .login-btn:hover { transform: scale(1.02); box-shadow: 0 5px 20px rgba(255,204,0,0.4); }
+        .login-error { background: rgba(220,53,69,0.2); color: #ff6b6b; padding: 12px; border-radius: 10px; margin-bottom: 15px; display: none; }
+        .login-error.show { display: block; }
+        .login-hint { margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+        .login-hint code { background: rgba(255,204,0,0.2); padding: 3px 8px; border-radius: 5px; color: var(--jkkn-yellow); }
+
+        /* Admin Panel */
+        .admin-panel { display: none; }
+        .admin-panel.active { display: block; }
+        .admin-header { background: rgba(10,77,40,0.95); padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--jkkn-yellow); position: sticky; top: 0; z-index: 100; flex-wrap: wrap; gap: 15px; }
+        .admin-header h1 { font-family: 'Bebas Neue', sans-serif; color: var(--jkkn-yellow); font-size: 1.6rem; letter-spacing: 2px; }
+        .header-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+        
+        .btn { padding: 10px 18px; border: none; border-radius: 25px; font-family: 'Outfit', sans-serif; font-weight: 600; cursor: pointer; transition: 0.3s; text-decoration: none; display: inline-block; font-size: 0.9rem; }
+        .btn-primary { background: var(--jkkn-yellow); color: var(--jkkn-green); }
+        .btn-primary:hover { box-shadow: 0 5px 15px rgba(255,204,0,0.4); }
+        .btn-danger { background: var(--danger-red); color: white; }
+        .btn-secondary { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.25); }
+        .btn-success { background: var(--success-green); color: white; }
+        .btn-success:hover { box-shadow: 0 5px 15px rgba(40,167,69,0.4); }
+
+        .container { max-width: 1300px; margin: 0 auto; padding: 25px; }
+
+        /* Stats */
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .stat-box { background: rgba(255,255,255,0.05); border-radius: 15px; padding: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.1); }
+        .stat-box .num { font-size: 2rem; font-weight: 900; color: var(--jkkn-yellow); }
+        .stat-box .lbl { font-size: 0.8rem; opacity: 0.7; margin-top: 5px; }
+
+        /* Tabs */
+        .tabs { display: flex; gap: 5px; margin-bottom: 25px; border-bottom: 2px solid rgba(255,255,255,0.1); }
+        .tab-btn { padding: 12px 20px; background: none; border: none; color: rgba(255,255,255,0.5); font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; }
+        .tab-btn:hover { color: white; }
+        .tab-btn.active { color: var(--jkkn-yellow); border-bottom-color: var(--jkkn-yellow); }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+
+        /* Form */
+        .card { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 25px; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.1); }
+        .card h3 { color: var(--jkkn-yellow); margin-bottom: 20px; font-size: 1.2rem; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px; }
+        .field { display: flex; flex-direction: column; gap: 6px; }
+        .field label { font-size: 0.85rem; font-weight: 600; opacity: 0.8; }
+        .field input { padding: 12px; border: 2px solid rgba(255,255,255,0.1); border-radius: 10px; background: rgba(255,255,255,0.05); color: white; font-size: 0.95rem; }
+        .field input:focus { outline: none; border-color: var(--jkkn-yellow); }
+        .field input::placeholder { color: rgba(255,255,255,0.4); }
+
+        /* Upload Zone */
+        .upload-zone { border: 2px dashed rgba(255,204,0,0.4); border-radius: 15px; padding: 30px; text-align: center; cursor: pointer; background: rgba(255,204,0,0.05); transition: 0.3s; margin-bottom: 15px; }
+        .upload-zone:hover { border-color: var(--jkkn-yellow); background: rgba(255,204,0,0.1); }
+        .upload-zone.dragover { border-color: var(--jkkn-yellow); background: rgba(255,204,0,0.15); }
+        .upload-zone .icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .upload-zone p { opacity: 0.8; margin-bottom: 5px; }
+        .upload-zone small { opacity: 0.5; }
+
+        /* Preview */
+        .preview { margin: 15px 0; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 10px; display: none; }
+        .preview.show { display: block; }
+        .preview img, .preview video { max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid var(--jkkn-yellow); }
+        .preview-info { margin-top: 10px; font-size: 0.85rem; color: var(--jkkn-yellow); }
+
+        /* Submit Button Area */
+        .submit-area { margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+
+        /* Media Grid */
+        .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .media-item { background: rgba(255,255,255,0.05); border-radius: 15px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
+        .media-item:hover { border-color: var(--jkkn-yellow); transform: translateY(-3px); }
+        .media-item .thumb { width: 100%; height: 150px; object-fit: cover; background: #000; display: block; }
+        .media-item .details { padding: 15px; }
+        .media-item .details h4 { color: var(--jkkn-yellow); margin-bottom: 5px; font-size: 1rem; }
+        .media-item .details p { font-size: 0.8rem; opacity: 0.6; margin-bottom: 10px; }
+        .media-item .btns { display: flex; gap: 8px; }
+        .media-item .btns button { flex: 1; padding: 8px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.8rem; transition: 0.3s; }
+        .media-item .btns .view-btn { background: rgba(255,204,0,0.2); color: var(--jkkn-yellow); }
+        .media-item .btns .view-btn:hover { background: var(--jkkn-yellow); color: var(--jkkn-green); }
+        .media-item .btns .del-btn { background: rgba(220,53,69,0.2); color: var(--danger-red); }
+        .media-item .btns .del-btn:hover { background: var(--danger-red); color: white; }
+
+        .empty { text-align: center; padding: 50px; opacity: 0.5; grid-column: 1 / -1; }
+        .empty .icon { font-size: 3rem; margin-bottom: 10px; }
+
+        /* Toast */
+        .toast-box { position: fixed; top: 20px; right: 20px; z-index: 9999; }
+        .toast { padding: 14px 20px; border-radius: 10px; color: white; font-weight: 600; margin-bottom: 10px; animation: slideIn 0.3s; box-shadow: 0 5px 20px rgba(0,0,0,0.3); }
+        .toast.success { background: var(--success-green); }
+        .toast.error { background: var(--danger-red); }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+        /* Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
+        .modal.show { display: flex; }
+        .modal-box { background: linear-gradient(145deg, #0a4d28, #063d1c); padding: 30px; border-radius: 20px; max-width: 400px; width: 100%; border: 2px solid var(--jkkn-yellow); text-align: center; }
+        .modal-box h3 { color: var(--jkkn-yellow); margin-bottom: 15px; }
+        .modal-box p { opacity: 0.8; margin-bottom: 25px; }
+        .modal-box .btns { display: flex; gap: 10px; }
+        .modal-box .btns button { flex: 1; }
+
+        @media (max-width: 600px) {
+            .admin-header { padding: 12px 15px; }
+            .admin-header h1 { font-size: 1.3rem; }
+            .container { padding: 15px; }
+            .card { padding: 20px; }
         }
     </style>
 </head>
 <body>
-    <canvas id="bg-canvas"></canvas>
 
-    <nav class="nav-bar">
-        <img src="logo 2.jpeg" alt="JKKN Logo">
-        <div><h1>JKKN MATRICULATION HIGHER SECONDARY SCHOOL</h1><p style="font-size:0.55rem;color:white;letter-spacing:2px;text-align:center;">KOMARAPALAYAM, NAMAKKAL</p></div>
-        <img src="right-logo.png" alt="School Logo">
-    </nav>
+<!-- LOGIN SCREEN -->
+<div class="login-screen" id="loginScreen">
+    <div class="login-card">
+        <div class="logo">🎓</div>
+        <h2>Admin Login</h2>
+        <div class="login-error" id="loginError">❌ Invalid credentials</div>
+        <input type="text" id="userInput" placeholder="👤 Username">
+        <input type="password" id="passInput" placeholder="🔒 Password">
+        <button class="login-btn" id="loginBtn">🔐 LOGIN</button>
+        <div class="login-hint">
+            Username: <code>jkknadmin</code><br>
+            Password: <code>Annual2026@JKKN</code>
+        </div>
+    </div>
+</div>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h2 style="color:var(--jkkn-yellow);letter-spacing:5px;font-weight:300;font-size:0.95rem;">ESTABLISHED 1970</h2>
-            <h1>56th ANNUAL DAY</h1>
-            <p style="letter-spacing:3px;color:#aaa;font-size:0.85rem;">HONOURING THE PAST | EMPOWERING THE FUTURE</p>
-            <div class="countdown-wrapper">
-                <div class="countdown-title">⏰ COUNTDOWN TO THE BIG DAY</div>
-                <div class="countdown-container">
-                    <div class="countdown-unit"><svg viewBox="0 0 120 120"><circle class="circle-bg" cx="60" cy="60" r="52"/><circle id="days-ring" class="circle-progress" cx="60" cy="60" r="52"/></svg><span class="countdown-number" id="days">00</span><span class="countdown-label">Days</span></div>
-                    <div class="countdown-unit"><svg viewBox="0 0 120 120"><circle class="circle-bg" cx="60" cy="60" r="52"/><circle id="hours-ring" class="circle-progress" cx="60" cy="60" r="52"/></svg><span class="countdown-number" id="hours">00</span><span class="countdown-label">Hours</span></div>
-                    <div class="countdown-unit"><svg viewBox="0 0 120 120"><circle class="circle-bg" cx="60" cy="60" r="52"/><circle id="mins-ring" class="circle-progress" cx="60" cy="60" r="52"/></svg><span class="countdown-number" id="mins">00</span><span class="countdown-label">Minutes</span></div>
-                    <div class="countdown-unit"><svg viewBox="0 0 120 120"><circle class="circle-bg" cx="60" cy="60" r="52"/><circle id="secs-ring" class="circle-progress" cx="60" cy="60" r="52"/></svg><span class="countdown-number" id="secs">00</span><span class="countdown-label">Seconds</span></div>
-                </div>
-                <div class="event-date-banner">📅 TUESDAY, 6TH JANUARY 2026 | 9:00 AM</div>
-            </div>
+<!-- ADMIN PANEL -->
+<div class="admin-panel" id="adminPanel">
+    <header class="admin-header">
+        <h1>🎓 JKKN Admin</h1>
+        <div class="header-btns">
+            <a href="index.html" target="_blank" class="btn btn-secondary">👁️ View Website</a>
+            <button class="btn btn-danger" id="logoutBtn">🚪 Logout</button>
         </div>
     </header>
 
-    <section class="invitation-wrap">
-        <div class="invite-card reveal">
-            <div class="script-font">Cordially Invites You</div>
-            <div style="color:#333;line-height:1.7;">The Management, Principal & Learners of<br><strong style="color:var(--jkkn-green);font-size:1.1rem;">JKKN MATRICULATION HIGHER SECONDARY SCHOOL</strong><br>request the pleasure of your presence at our<div style="font-weight:900;font-size:1.8rem;margin:12px 0;color:#000;font-family:'Cinzel';">56th Annual Day Celebration</div><div class="highlight-date">Tuesday, 06th January 2026</div><br><span style="font-size:1rem;font-weight:600;">at 9:00 AM in the School Premises</span></div>
-        </div>
-    </section>
+    <div class="toast-box" id="toastBox"></div>
 
-    <section>
-        <h2 class="section-title reveal">Dignitaries of the Day</h2>
-        <div class="guest-grid">
-            <div class="guest-card reveal">
-                <div class="guest-photo-wrap"><img src="parween sultan.jpg" alt="Dr. Parveen Sultana" class="guest-photo"></div>
-                <span class="guest-role">CHIEF GUEST</span>
-                <h3>Prof. Dr. Parveen Sultana</h3>
-                <p class="designation">Tamil Orator & Motivational Speaker<br>M.A., B.Ed., Ph.D.</p>
-                <div class="guest-highlights"><span class="highlight-tag">25+ Years Teaching</span><span class="highlight-tag">International Speaker</span><span class="highlight-tag">7 Research Books</span><span class="highlight-tag">TV Commentator</span></div>
+    <div class="container">
+        <div class="stats">
+            <div class="stat-box"><div class="num" id="vCount">0</div><div class="lbl">Videos</div></div>
+            <div class="stat-box"><div class="num" id="pCount">0</div><div class="lbl">Photos</div></div>
+            <div class="stat-box"><div class="num" id="daysNum">0</div><div class="lbl">Days Left</div></div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="videos">🎬 Videos</button>
+            <button class="tab-btn" data-tab="photos">📸 Photos</button>
+            <button class="tab-btn" data-tab="settings">⚙️ Settings</button>
+        </div>
+
+        <!-- VIDEOS TAB -->
+        <div class="tab-panel active" id="tab-videos">
+            <div class="card">
+                <h3>➕ Add New Video</h3>
+                <div class="form-grid">
+                    <div class="field"><label>Title *</label><input type="text" id="vidTitle" placeholder="Enter video title"></div>
+                    <div class="field"><label>Description</label><input type="text" id="vidDesc" placeholder="Short description"></div>
+                </div>
+                <div class="field"><label>Video URL (YouTube, Drive, or direct link)</label><input type="text" id="vidUrl" placeholder="https://..."></div>
+                
+                <p style="text-align: center; margin: 20px 0 10px; opacity: 0.6;">— OR —</p>
+                
+                <div class="upload-zone" id="vidZone">
+                    <div class="icon">🎥</div>
+                    <p>Click or drag video file here</p>
+                    <small>MP4, WebM (Max 50MB)</small>
+                    <input type="file" id="vidFile" accept="video/*" style="display:none">
+                </div>
+                
+                <div class="preview" id="vidPreview">
+                    <video id="vidPreviewEl" controls style="max-width:100%; max-height:200px;"></video>
+                    <div class="preview-info">✅ Video ready to upload</div>
+                </div>
+
+                <div class="submit-area">
+                    <button class="btn btn-success" id="addVidBtn" style="width: 100%; padding: 15px; font-size: 1rem;">
+                        ✅ SUBMIT VIDEO
+                    </button>
+                </div>
             </div>
-            <div class="guest-card reveal">
-                <span class="alumni-badge">⭐ PROUD ALUMNUS</span>
-                <div class="guest-photo-wrap"><img src="Guest of Honor -Mr Gogulram RB.jpeg" alt="Mr. R.B. Gogulram" class="guest-photo"></div>
-                <span class="guest-role">GUEST OF HONOUR</span>
-                <h3>Mr. R.B. Gogulram</h3>
-                <p class="designation">Manager – AI Operations, ZOHO Corp<br>B.E., M.E. (Embedded Systems & AI)</p>
-                <div class="guest-highlights"><span class="highlight-tag">JKKN 1998-2012</span><span class="highlight-tag">SPL 2012</span><span class="highlight-tag">ZOHO AI Lead</span><span class="highlight-tag">NCC C-Cert</span></div>
+
+            <h3 style="color: var(--jkkn-yellow); margin-bottom: 15px;">📋 Uploaded Videos</h3>
+            <div class="media-grid" id="vidGrid"></div>
+        </div>
+
+        <!-- PHOTOS TAB -->
+        <div class="tab-panel" id="tab-photos">
+            <div class="card">
+                <h3>➕ Add New Photo</h3>
+                <div class="form-grid">
+                    <div class="field"><label>Title *</label><input type="text" id="imgTitle" placeholder="Enter photo title"></div>
+                    <div class="field"><label>Description</label><input type="text" id="imgDesc" placeholder="Short description"></div>
+                </div>
+                <div class="field"><label>Image URL</label><input type="text" id="imgUrl" placeholder="https://..."></div>
+                
+                <p style="text-align: center; margin: 20px 0 10px; opacity: 0.6;">— OR —</p>
+                
+                <div class="upload-zone" id="imgZone">
+                    <div class="icon">📷</div>
+                    <p>Click or drag image file here</p>
+                    <small>JPG, PNG, WebP (Max 5MB)</small>
+                    <input type="file" id="imgFile" accept="image/*" style="display:none">
+                </div>
+                
+                <div class="preview" id="imgPreview">
+                    <img id="imgPreviewEl" src="" alt="Preview">
+                    <div class="preview-info">✅ Image ready to upload</div>
+                </div>
+
+                <div class="submit-area">
+                    <button class="btn btn-success" id="addImgBtn" style="width: 100%; padding: 15px; font-size: 1rem;">
+                        ✅ SUBMIT PHOTO
+                    </button>
+                </div>
+            </div>
+
+            <h3 style="color: var(--jkkn-yellow); margin-bottom: 15px;">📋 Uploaded Photos</h3>
+            <div class="media-grid" id="imgGrid"></div>
+        </div>
+
+        <!-- SETTINGS TAB -->
+        <div class="tab-panel" id="tab-settings">
+            <div class="card">
+                <h3>🔐 Login Info</h3>
+                <p style="opacity: 0.7;">Username: <code style="background:rgba(255,204,0,0.2);padding:3px 8px;border-radius:5px;color:var(--jkkn-yellow)">jkknadmin</code></p>
+                <p style="opacity: 0.7; margin-top: 8px;">Password: <code style="background:rgba(255,204,0,0.2);padding:3px 8px;border-radius:5px;color:var(--jkkn-yellow)">Annual2026@JKKN</code></p>
+            </div>
+            <div class="card">
+                <h3>🗑️ Clear All Data</h3>
+                <p style="opacity: 0.7; margin-bottom: 15px;">⚠️ This cannot be undone!</p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="btn btn-danger" id="clearVidsBtn">Clear All Videos</button>
+                    <button class="btn btn-danger" id="clearImgsBtn">Clear All Photos</button>
+                </div>
+            </div>
+            <div class="card">
+                <h3>💾 Backup Data</h3>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="btn btn-secondary" id="exportBtn">📥 Export JSON</button>
+                    <button class="btn btn-secondary" id="importBtnTrigger">📤 Import JSON</button>
+                    <input type="file" id="importInput" accept=".json" style="display:none">
+                </div>
             </div>
         </div>
-    </section>
-
-    <section class="promo-section reveal"><h2 class="section-title">Promo Videos</h2><div class="promo-grid" id="videoGallery"><div class="no-content-message" id="noVideosMsg">🎬 Videos coming soon!</div></div></section>
-    <section class="promo-section reveal"><h2 class="section-title">Photo Gallery</h2><div class="promo-grid" id="photoGallery"><div class="no-content-message" id="noPhotosMsg">📸 Photos coming soon!</div></div></section>
-
-    <section class="timeline-section">
-        <h2 class="section-title reveal">Event Journey</h2>
-        <div class="timeline-wrapper">
-            <div class="timeline-line"></div>
-            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">01</div><h3>Reception & Guest Arrival</h3><p>Welcome gathering</p></div></div>
-            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">02</div><h3>Lighting the Kuthu Vilakku</h3><p>Traditional lamp lighting</p></div></div>
-            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">03</div><h3>Honouring the Guests</h3><p>Felicitation ceremony</p></div></div>
-            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">04</div><h3>Welcome & Annual Report</h3><p>Year's achievements</p></div></div>
-            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">05</div><h3>Chief Guest Address</h3><p>Prof. Dr. Parveen Sultana</p></div></div>
-            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">06</div><h3>Guest of Honour Address</h3><p>Mr. R.B. Gogulram</p></div></div>
-            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">07</div><h3>Prize Distribution</h3><p>Awarding achievers</p></div></div>
-            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">08</div><h3>Cultural Performances</h3><p>Dance, music & drama</p></div></div>
-            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">09</div><h3>Vote of Thanks</h3><p>Closing remarks</p></div></div>
-        </div>
-    </section>
-
-    <section class="map-section reveal">
-        <h2 style="color:var(--jkkn-yellow);font-family:'Bebas Neue';font-size:2.2rem;">Find Your Way</h2>
-        <div class="map-container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3910.3705353164477!2d77.70399107505677!3d11.443971988746363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96829dddff877%3A0xb8a823563e20d9fe!2sJKKN%20Matric%20Higher%20Secondary%20School!5e0!3m2!1sen!2sin!4v1703248000000!5m2!1sen!2sin" width="100%" height="350" style="border:0;" allowfullscreen loading="lazy"></iframe></div>
-    </section>
-
-    <footer class="contact-footer">
-        <div class="footer-grid">
-            <div class="footer-info"><h3>Contact Us</h3><p><strong>JKKN Matriculation Higher Secondary School</strong><br>Salem Main Road, Komarapalayam - 638 183<br>Namakkal District, Tamil Nadu</p><p><strong>📞</strong> +91 99658 91999<br><strong>✉️</strong> school@jkkn.ac.in</p></div>
-            <div class="footer-links"><h3>Quick Links</h3><a href="#">School Website</a><a href="#">Annual Report 2025</a><a href="#">Alumni Portal</a><a href="#" onclick="openAdminModal();return false;">🔐 Admin Access</a></div>
-        </div>
-        <div style="text-align:center;margin-top:35px;opacity:0.4;font-size:0.7rem;">© 2026 JKKN Educational Institutions. All Rights Reserved.</div>
-    </footer>
-
-    <!-- CHATBOT -->
-    <div class="chatbot-container">
-        <div class="chat-window" id="chatWindow">
-            <div class="chat-header"><div class="chat-header-icon">🤖</div><div class="chat-header-info"><h4>JKKN AI Assistant</h4><p>Ask me about Annual Day!</p></div><button class="chat-close" onclick="toggleChat()">×</button></div>
-            <div class="chat-messages" id="chatMessages"><div class="message bot">👋 Hello! I'm your JKKN Annual Day Assistant. Ask me anything about the event!</div></div>
-            <div class="typing-indicator" id="typingIndicator"><span></span><span></span><span></span></div>
-            <div class="quick-replies"><button class="quick-reply" onclick="askQ('When is the event?')">📅 When?</button><button class="quick-reply" onclick="askQ('Who is the chief guest?')">👤 Chief Guest</button><button class="quick-reply" onclick="askQ('What is the schedule?')">📋 Schedule</button><button class="quick-reply" onclick="askQ('Where is the venue?')">📍 Venue</button></div>
-            <div class="chat-input-area"><input type="text" class="chat-input" id="chatInput" placeholder="Type your question..." onkeypress="if(event.key==='Enter')sendMsg()"><button class="chat-send" onclick="sendMsg()">➤</button></div>
-        </div>
-        <div class="chatbot-toggle" onclick="toggleChat()"><div class="bot-face"><div class="bot-antenna"></div><div class="bot-eyes"><div class="bot-eye"></div><div class="bot-eye"></div></div><div class="bot-mouth"></div></div></div>
     </div>
+</div>
 
-    <!-- MODALS -->
-    <div class="modal-overlay video-modal" id="videoModal"><button class="modal-close" onclick="closeVideoModal()">×</button><video id="modalVideo" controls></video></div>
-    <div class="modal-overlay lightbox" id="lightbox"><button class="modal-close" onclick="closeLightbox()">×</button><button class="nav-btn prev-btn" onclick="navLightbox(-1)">‹</button><img id="lightboxImg" src=""><button class="nav-btn next-btn" onclick="navLightbox(1)">›</button></div>
-    <div class="modal-overlay" id="adminModal"><div class="admin-login-card"><button class="modal-close" onclick="closeAdminModal()" style="position:absolute;top:12px;right:12px;width:32px;height:32px;font-size:1.1rem;">×</button><h2>🔐 Admin Login</h2><div class="login-error" id="loginError">Invalid credentials</div><input type="text" id="adminUsername" placeholder="Username"><input type="password" id="adminPassword" placeholder="Password" onkeypress="if(event.key==='Enter')attemptLogin()"><button onclick="attemptLogin()">Login</button></div></div>
+<!-- CONFIRM MODAL -->
+<div class="modal" id="confirmModal">
+    <div class="modal-box">
+        <h3>⚠️ Confirm</h3>
+        <p id="confirmMsg">Are you sure?</p>
+        <div class="btns">
+            <button class="btn btn-secondary" id="cancelModalBtn">Cancel</button>
+            <button class="btn btn-danger" id="confirmModalBtn">Delete</button>
+        </div>
+    </div>
+</div>
 
 <script>
-// Particles
-var canvas = document.getElementById('bg-canvas'), ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-var particles = [];
-function Particle() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*2; this.sx = Math.random()*0.3-0.15; this.sy = Math.random()*0.3-0.15; }
-Particle.prototype.update = function() { this.x += this.sx; this.y += this.sy; if(this.x > canvas.width) this.x = 0; if(this.y > canvas.height) this.y = 0; };
-Particle.prototype.draw = function() { ctx.fillStyle = 'rgba(255,204,0,0.2)'; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill(); };
-for(var i=0; i<50; i++) particles.push(new Particle());
-function animP() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(function(p){p.update();p.draw();}); requestAnimationFrame(animP); }
-animP();
-
-// Countdown
-var target = new Date("January 6, 2026 09:00:00").getTime();
-function setRing(id, pct) { var r = document.getElementById(id); if(r) r.style.strokeDashoffset = 327 - (pct * 327); }
-function updateCD() {
-    var now = Date.now(), diff = target - now;
-    var d = Math.floor(diff/(1000*60*60*24)), h = Math.floor((diff%(1000*60*60*24))/(1000*60*60)), m = Math.floor((diff%(1000*60*60))/(1000*60)), s = Math.floor((diff%(1000*60))/1000);
-    document.getElementById('days').textContent = d<10?'0'+d:d;
-    document.getElementById('hours').textContent = h<10?'0'+h:h;
-    document.getElementById('mins').textContent = m<10?'0'+m:m;
-    document.getElementById('secs').textContent = s<10?'0'+s:s;
-    setRing('days-ring', Math.min(d/365,1)); setRing('hours-ring', h/24); setRing('mins-ring', m/60); setRing('secs-ring', s/60);
-}
-setInterval(updateCD, 1000); updateCD();
-
-// Reveal
-window.addEventListener('scroll', function() { document.querySelectorAll('.reveal').forEach(function(el) { if(el.getBoundingClientRect().top < window.innerHeight - 60) el.classList.add('active'); }); });
-
-// AI Chatbot
-var eventInfo = {
-    date: "Tuesday, 6th January 2026",
-    time: "9:00 AM",
-    venue: "JKKN Matriculation Higher Secondary School, Salem Main Road, Komarapalayam - 638 183, Namakkal District",
-    chiefGuest: "Prof. Dr. Parveen Sultana - Tamil Orator & Motivational Speaker, M.A., B.Ed., Ph.D., 25+ years teaching, International speaker, Author of 7 books",
-    guestOfHonour: "Mr. R.B. Gogulram - Manager AI Operations at ZOHO, JKKN Alumnus 1998-2012, Former SPL, NCC C-Certificate holder, B.E., M.E.",
-    schedule: ["1. Reception & Guest Arrival", "2. Lighting the Kuthu Vilakku", "3. Honouring the Guests", "4. Welcome Address & Annual Report", "5. Chief Guest Address", "6. Guest of Honour Address", "7. Prize Distribution", "8. Cultural Performances", "9. Vote of Thanks"],
-    contact: "Phone: +91 99658 91999, Email: school@jkkn.ac.in"
-};
-function getReply(q) {
-    var ql = q.toLowerCase();
-    if(ql.match(/when|date|day/)) return "📅 The 56th Annual Day is on <b>"+eventInfo.date+"</b> at <b>"+eventInfo.time+"</b>. Mark your calendar! 🎉";
-    if(ql.match(/time|timing/)) return "⏰ Event starts at <b>"+eventInfo.time+"</b> on "+eventInfo.date+". Please arrive early!";
-    if(ql.match(/where|venue|location|address|place/)) return "📍 <b>Venue:</b> "+eventInfo.venue+"<br><br>Check the map at the bottom of the page! 🗺️";
-    if(ql.match(/chief guest|chief|parveen|sultana/)) return "👤 <b>Chief Guest:</b> "+eventInfo.chiefGuest;
-    if(ql.match(/guest of honour|honor|honour|gogulram|alumnus|alumni/)) return "🌟 <b>Guest of Honour:</b> "+eventInfo.guestOfHonour;
-    if(ql.match(/guest|who is coming|dignitaries/)) return "🎤 <b>Our Guests:</b><br><br>👤 Chief Guest: Prof. Dr. Parveen Sultana<br>🌟 Guest of Honour: Mr. R.B. Gogulram (Proud Alumnus!)";
-    if(ql.match(/schedule|program|agenda|events|order/)) return "📋 <b>Program Schedule:</b><br><br>"+eventInfo.schedule.join("<br>")+"<br><br>It's going to be amazing! 🎊";
-    if(ql.match(/contact|phone|call|email|reach/)) return "📞 <b>Contact:</b> "+eventInfo.contact;
-    if(ql.match(/school|jkkn|about|history/)) return "🏫 JKKN Matriculation Higher Secondary School, established in 1970, celebrating 56 years of excellence!";
-    if(ql.match(/annual day|celebration|what is/)) return "🎉 The <b>56th Annual Day</b> celebrates 56 years of JKKN's educational excellence with prizes, performances, and guest speeches. Join us on "+eventInfo.date+"!";
-    if(ql.match(/prize|award|distribution/)) return "🏆 The <b>Prize Distribution</b> will honor outstanding learners for their achievements!";
-    if(ql.match(/cultural|dance|music|performance/)) return "💃 <b>Cultural Performances</b> include dance, music, drama & choir by our talented learners! 🎭";
-    if(ql.match(/dress|wear|attire/)) return "👔 Formal or traditional attire recommended for guests. Students will be in costumes.";
-    if(ql.match(/hello|hi|hey|good/)) return "👋 Hello! Welcome! Ask me about the date, venue, guests, schedule, or anything else!";
-    if(ql.match(/thank/)) return "😊 You're welcome! See you at the 56th Annual Day! 🎉";
-    if(ql.match(/help/)) return "🤖 I can help with:<br>• Event date & time<br>• Venue & directions<br>• Guest info<br>• Program schedule<br>• Contact details<br><br>Just ask!";
-    return "🤔 Try asking about: When is the event? Who is the chief guest? What's the schedule? Where is the venue?";
-}
-function toggleChat() { document.getElementById('chatWindow').classList.toggle('active'); }
-function sendMsg() {
-    var input = document.getElementById('chatInput'), msg = input.value.trim();
-    if(!msg) return;
-    addMsg(msg, 'user'); input.value = '';
-    document.getElementById('typingIndicator').classList.add('active');
-    setTimeout(function() { document.getElementById('typingIndicator').classList.remove('active'); addMsg(getReply(msg), 'bot'); }, 600 + Math.random()*400);
-}
-function addMsg(text, type) { var c = document.getElementById('chatMessages'), m = document.createElement('div'); m.className = 'message ' + type; m.innerHTML = text; c.appendChild(m); c.scrollTop = c.scrollHeight; }
-function askQ(q) { document.getElementById('chatInput').value = q; sendMsg(); }
-
-// Media
-var lbIndex = 0, galleryImgs = [];
-function loadMedia() {
-    var videos = [], photos = [];
-    try { videos = JSON.parse(localStorage.getItem('jkkn_promo_videos')) || []; } catch(e){}
-    try { photos = JSON.parse(localStorage.getItem('jkkn_promo_photos')) || []; } catch(e){}
-    renderVids(videos); renderImgs(photos);
-}
-function renderVids(vids) {
-    var c = document.getElementById('videoGallery'), n = document.getElementById('noVideosMsg');
-    if(!vids.length) { n.style.display = 'block'; return; }
-    n.style.display = 'none'; c.innerHTML = '';
-    vids.forEach(function(v) { var d = document.createElement('div'); d.className = 'promo-card'; d.innerHTML = '<video onclick="openVideoModal(\''+v.url+'\')"><source src="'+v.url+'"></video><div class="promo-info"><h4>'+v.title+'</h4><p>'+(v.description||'Click to play')+'</p></div>'; c.appendChild(d); });
-}
-function renderImgs(imgs) {
-    var c = document.getElementById('photoGallery'), n = document.getElementById('noPhotosMsg');
-    if(!imgs.length) { n.style.display = 'block'; return; }
-    n.style.display = 'none'; c.innerHTML = ''; galleryImgs = imgs.map(function(p){return p.url;});
-    imgs.forEach(function(p, i) { var d = document.createElement('div'); d.className = 'promo-card'; d.innerHTML = '<img src="'+p.url+'" onclick="openLightbox('+i+')"><div class="promo-info"><h4>'+p.title+'</h4><p>'+(p.description||'')+'</p></div>'; c.appendChild(d); });
-}
-function openVideoModal(url) { var m = document.getElementById('videoModal'), v = document.getElementById('modalVideo'); v.src = url; m.classList.add('active'); v.play(); }
-function closeVideoModal() { var m = document.getElementById('videoModal'), v = document.getElementById('modalVideo'); v.pause(); v.src = ''; m.classList.remove('active'); }
-function openLightbox(i) { lbIndex = i; document.getElementById('lightboxImg').src = galleryImgs[i]; document.getElementById('lightbox').classList.add('active'); }
-function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
-function navLightbox(d) { lbIndex += d; if(lbIndex < 0) lbIndex = galleryImgs.length - 1; if(lbIndex >= galleryImgs.length) lbIndex = 0; document.getElementById('lightboxImg').src = galleryImgs[lbIndex]; }
-
-// Admin
-function openAdminModal() { document.getElementById('adminModal').classList.add('active'); document.getElementById('loginError').classList.remove('show'); }
-function closeAdminModal() { document.getElementById('adminModal').classList.remove('active'); }
-function attemptLogin() { var u = document.getElementById('adminUsername').value, p = document.getElementById('adminPassword').value; if(u === 'jkknadmin' && p === 'Annual2026@JKKN') { localStorage.setItem('jkkn_admin_logged', 'yes'); window.location.href = 'admin.html'; } else { document.getElementById('loginError').classList.add('show'); } }
-
-// Modal closes
-document.getElementById('videoModal').onclick = function(e) { if(e.target === this) closeVideoModal(); };
-document.getElementById('lightbox').onclick = function(e) { if(e.target === this) closeLightbox(); };
-document.getElementById('adminModal').onclick = function(e) { if(e.target === this) closeAdminModal(); };
-document.onkeydown = function(e) { if(document.getElementById('lightbox').classList.contains('active')) { if(e.key === 'ArrowLeft') navLightbox(-1); if(e.key === 'ArrowRight') navLightbox(1); } if(e.key === 'Escape') { closeVideoModal(); closeLightbox(); closeAdminModal(); } };
-
-loadMedia();
+(function() {
+    // ===== CONFIG =====
+    var CREDENTIALS = { user: 'jkknadmin', pass: 'Annual2026@JKKN' };
+    
+    // ===== ELEMENTS =====
+    var loginScreen = document.getElementById('loginScreen');
+    var adminPanel = document.getElementById('adminPanel');
+    var loginError = document.getElementById('loginError');
+    var userInput = document.getElementById('userInput');
+    var passInput = document.getElementById('passInput');
+    var toastBox = document.getElementById('toastBox');
+    var confirmModal = document.getElementById('confirmModal');
+    var confirmMsg = document.getElementById('confirmMsg');
+    
+    var vidTitle = document.getElementById('vidTitle');
+    var vidDesc = document.getElementById('vidDesc');
+    var vidUrl = document.getElementById('vidUrl');
+    var vidZone = document.getElementById('vidZone');
+    var vidFile = document.getElementById('vidFile');
+    var vidPreview = document.getElementById('vidPreview');
+    var vidPreviewEl = document.getElementById('vidPreviewEl');
+    var vidGrid = document.getElementById('vidGrid');
+    
+    var imgTitle = document.getElementById('imgTitle');
+    var imgDesc = document.getElementById('imgDesc');
+    var imgUrl = document.getElementById('imgUrl');
+    var imgZone = document.getElementById('imgZone');
+    var imgFile = document.getElementById('imgFile');
+    var imgPreview = document.getElementById('imgPreview');
+    var imgPreviewEl = document.getElementById('imgPreviewEl');
+    var imgGrid = document.getElementById('imgGrid');
+    
+    var uploadedVidData = null;
+    var uploadedImgData = null;
+    var pendingAction = null;
+    
+    // ===== TOAST =====
+    function toast(msg, type) {
+        var t = document.createElement('div');
+        t.className = 'toast ' + (type || 'success');
+        t.textContent = (type === 'error' ? '❌ ' : '✅ ') + msg;
+        toastBox.appendChild(t);
+        setTimeout(function() { t.remove(); }, 3000);
+    }
+    
+    // ===== STORAGE =====
+    function getVids() {
+        try { return JSON.parse(localStorage.getItem('jkkn_promo_videos')) || []; }
+        catch(e) { return []; }
+    }
+    function saveVids(arr) {
+        localStorage.setItem('jkkn_promo_videos', JSON.stringify(arr));
+        updateStats();
+        renderVids();
+    }
+    function getImgs() {
+        try { return JSON.parse(localStorage.getItem('jkkn_promo_photos')) || []; }
+        catch(e) { return []; }
+    }
+    function saveImgs(arr) {
+        localStorage.setItem('jkkn_promo_photos', JSON.stringify(arr));
+        updateStats();
+        renderImgs();
+    }
+    
+    function updateStats() {
+        document.getElementById('vCount').textContent = getVids().length;
+        document.getElementById('pCount').textContent = getImgs().length;
+        var days = Math.floor((new Date('2026-01-06').getTime() - Date.now()) / 86400000);
+        document.getElementById('daysNum').textContent = days > 0 ? days : 0;
+    }
+    
+    // ===== LOGIN =====
+    function checkSession() {
+        if (localStorage.getItem('jkkn_admin_logged') === 'yes') {
+            showAdmin();
+        }
+    }
+    
+    function doLogin() {
+        var u = userInput.value.trim();
+        var p = passInput.value;
+        if (u === CREDENTIALS.user && p === CREDENTIALS.pass) {
+            localStorage.setItem('jkkn_admin_logged', 'yes');
+            loginError.classList.remove('show');
+            showAdmin();
+            toast('Welcome!');
+        } else {
+            loginError.classList.add('show');
+        }
+    }
+    
+    function doLogout() {
+        localStorage.removeItem('jkkn_admin_logged');
+        adminPanel.classList.remove('active');
+        loginScreen.classList.remove('hidden');
+        userInput.value = '';
+        passInput.value = '';
+    }
+    
+    function showAdmin() {
+        loginScreen.classList.add('hidden');
+        adminPanel.classList.add('active');
+        updateStats();
+        renderVids();
+        renderImgs();
+    }
+    
+    document.getElementById('loginBtn').onclick = doLogin;
+    document.getElementById('logoutBtn').onclick = doLogout;
+    passInput.onkeypress = function(e) { if (e.key === 'Enter') doLogin(); };
+    userInput.onkeypress = function(e) { if (e.key === 'Enter') passInput.focus(); };
+    
+    // ===== TABS =====
+    var tabBtns = document.querySelectorAll('.tab-btn');
+    var tabPanels = document.querySelectorAll('.tab-panel');
+    
+    for (var i = 0; i < tabBtns.length; i++) {
+        tabBtns[i].onclick = function() {
+            var target = this.getAttribute('data-tab');
+            for (var j = 0; j < tabBtns.length; j++) {
+                tabBtns[j].classList.remove('active');
+                tabPanels[j].classList.remove('active');
+            }
+            this.classList.add('active');
+            document.getElementById('tab-' + target).classList.add('active');
+        };
+    }
+    
+    // ===== VIDEO UPLOAD =====
+    vidZone.onclick = function() { vidFile.click(); };
+    vidZone.ondragover = function(e) { e.preventDefault(); vidZone.classList.add('dragover'); };
+    vidZone.ondragleave = function() { vidZone.classList.remove('dragover'); };
+    vidZone.ondrop = function(e) {
+        e.preventDefault();
+        vidZone.classList.remove('dragover');
+        if (e.dataTransfer.files.length) handleVidFile(e.dataTransfer.files[0]);
+    };
+    vidFile.onchange = function() {
+        if (vidFile.files.length) handleVidFile(vidFile.files[0]);
+    };
+    
+    function handleVidFile(file) {
+        if (file.size > 50 * 1024 * 1024) {
+            toast('File too large (max 50MB)', 'error');
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            uploadedVidData = e.target.result;
+            vidPreviewEl.src = uploadedVidData;
+            vidPreview.classList.add('show');
+            toast('Video loaded! Click SUBMIT to save.');
+        };
+        reader.readAsDataURL(file);
+    }
+    
+    // ===== ADD VIDEO =====
+    document.getElementById('addVidBtn').onclick = function() {
+        var title = vidTitle.value.trim();
+        var desc = vidDesc.value.trim();
+        var url = vidUrl.value.trim();
+        
+        if (!title) {
+            toast('Please enter a title', 'error');
+            return;
+        }
+        
+        // Use uploaded file data if available, otherwise use URL
+        var finalUrl = uploadedVidData || url;
+        
+        if (!finalUrl) {
+            toast('Please provide a URL or upload a file', 'error');
+            return;
+        }
+        
+        var vids = getVids();
+        vids.push({
+            id: Date.now(),
+            title: title,
+            description: desc,
+            url: finalUrl,
+            date: new Date().toISOString()
+        });
+        saveVids(vids);
+        
+        // Clear form
+        vidTitle.value = '';
+        vidDesc.value = '';
+        vidUrl.value = '';
+        vidPreview.classList.remove('show');
+        vidPreviewEl.src = '';
+        uploadedVidData = null;
+        vidFile.value = '';
+        
+        toast('Video added successfully!');
+    };
+    
+    // ===== RENDER VIDEOS =====
+    function renderVids() {
+        var vids = getVids();
+        if (vids.length === 0) {
+            vidGrid.innerHTML = '<div class="empty"><div class="icon">🎬</div><p>No videos yet</p></div>';
+            return;
+        }
+        var html = '';
+        for (var i = 0; i < vids.length; i++) {
+            var v = vids[i];
+            html += '<div class="media-item">';
+            html += '<video class="thumb" src="' + v.url + '" muted></video>';
+            html += '<div class="details">';
+            html += '<h4>' + v.title + '</h4>';
+            html += '<p>' + (v.description || 'No description') + '</p>';
+            html += '<div class="btns">';
+            html += '<button class="view-btn" onclick="openMedia(\'' + v.url + '\')">▶️ Play</button>';
+            html += '<button class="del-btn" onclick="deleteVid(' + v.id + ')">🗑️</button>';
+            html += '</div></div></div>';
+        }
+        vidGrid.innerHTML = html;
+    }
+    
+    window.deleteVid = function(id) {
+        confirmMsg.textContent = 'Delete this video?';
+        confirmModal.classList.add('show');
+        pendingAction = function() {
+            var vids = getVids().filter(function(v) { return v.id !== id; });
+            saveVids(vids);
+            toast('Video deleted');
+        };
+    };
+    
+    // ===== IMAGE UPLOAD =====
+    imgZone.onclick = function() { imgFile.click(); };
+    imgZone.ondragover = function(e) { e.preventDefault(); imgZone.classList.add('dragover'); };
+    imgZone.ondragleave = function() { imgZone.classList.remove('dragover'); };
+    imgZone.ondrop = function(e) {
+        e.preventDefault();
+        imgZone.classList.remove('dragover');
+        if (e.dataTransfer.files.length) handleImgFile(e.dataTransfer.files[0]);
+    };
+    imgFile.onchange = function() {
+        if (imgFile.files.length) handleImgFile(imgFile.files[0]);
+    };
+    
+    function handleImgFile(file) {
+        if (file.size > 5 * 1024 * 1024) {
+            toast('File too large (max 5MB)', 'error');
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            uploadedImgData = e.target.result;
+            imgPreviewEl.src = uploadedImgData;
+            imgPreview.classList.add('show');
+            toast('Image loaded! Click SUBMIT to save.');
+        };
+        reader.readAsDataURL(file);
+    }
+    
+    // ===== ADD PHOTO =====
+    document.getElementById('addImgBtn').onclick = function() {
+        var title = imgTitle.value.trim();
+        var desc = imgDesc.value.trim();
+        var url = imgUrl.value.trim();
+        
+        if (!title) {
+            toast('Please enter a title', 'error');
+            return;
+        }
+        
+        var finalUrl = uploadedImgData || url;
+        
+        if (!finalUrl) {
+            toast('Please provide a URL or upload a file', 'error');
+            return;
+        }
+        
+        var imgs = getImgs();
+        imgs.push({
+            id: Date.now(),
+            title: title,
+            description: desc,
+            url: finalUrl,
+            date: new Date().toISOString()
+        });
+        saveImgs(imgs);
+        
+        // Clear form
+        imgTitle.value = '';
+        imgDesc.value = '';
+        imgUrl.value = '';
+        imgPreview.classList.remove('show');
+        imgPreviewEl.src = '';
+        uploadedImgData = null;
+        imgFile.value = '';
+        
+        toast('Photo added successfully!');
+    };
+    
+    // ===== RENDER PHOTOS =====
+    function renderImgs() {
+        var imgs = getImgs();
+        if (imgs.length === 0) {
+            imgGrid.innerHTML = '<div class="empty"><div class="icon">📸</div><p>No photos yet</p></div>';
+            return;
+        }
+        var html = '';
+        for (var i = 0; i < imgs.length; i++) {
+            var p = imgs[i];
+            html += '<div class="media-item">';
+            html += '<img class="thumb" src="' + p.url + '" alt="">';
+            html += '<div class="details">';
+            html += '<h4>' + p.title + '</h4>';
+            html += '<p>' + (p.description || 'No description') + '</p>';
+            html += '<div class="btns">';
+            html += '<button class="view-btn" onclick="openMedia(\'' + p.url + '\')">🔍 View</button>';
+            html += '<button class="del-btn" onclick="deleteImg(' + p.id + ')">🗑️</button>';
+            html += '</div></div></div>';
+        }
+        imgGrid.innerHTML = html;
+    }
+    
+    window.deleteImg = function(id) {
+        confirmMsg.textContent = 'Delete this photo?';
+        confirmModal.classList.add('show');
+        pendingAction = function() {
+            var imgs = getImgs().filter(function(p) { return p.id !== id; });
+            saveImgs(imgs);
+            toast('Photo deleted');
+        };
+    };
+    
+    // ===== OPEN MEDIA =====
+    window.openMedia = function(url) {
+        window.open(url, '_blank');
+    };
+    
+    // ===== MODAL =====
+    document.getElementById('cancelModalBtn').onclick = function() {
+        confirmModal.classList.remove('show');
+        pendingAction = null;
+    };
+    document.getElementById('confirmModalBtn').onclick = function() {
+        if (pendingAction) pendingAction();
+        confirmModal.classList.remove('show');
+        pendingAction = null;
+    };
+    confirmModal.onclick = function(e) {
+        if (e.target === confirmModal) {
+            confirmModal.classList.remove('show');
+            pendingAction = null;
+        }
+    };
+    
+    // ===== SETTINGS =====
+    document.getElementById('clearVidsBtn').onclick = function() {
+        confirmMsg.textContent = 'Delete ALL videos? This cannot be undone!';
+        confirmModal.classList.add('show');
+        pendingAction = function() {
+            localStorage.removeItem('jkkn_promo_videos');
+            updateStats();
+            renderVids();
+            toast('All videos cleared');
+        };
+    };
+    
+    document.getElementById('clearImgsBtn').onclick = function() {
+        confirmMsg.textContent = 'Delete ALL photos? This cannot be undone!';
+        confirmModal.classList.add('show');
+        pendingAction = function() {
+            localStorage.removeItem('jkkn_promo_photos');
+            updateStats();
+            renderImgs();
+            toast('All photos cleared');
+        };
+    };
+    
+    document.getElementById('exportBtn').onclick = function() {
+        var data = {
+            videos: getVids(),
+            photos: getImgs(),
+            exported: new Date().toISOString()
+        };
+        var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'jkkn-media-backup.json';
+        a.click();
+        toast('Data exported!');
+    };
+    
+    document.getElementById('importBtnTrigger').onclick = function() {
+        document.getElementById('importInput').click();
+    };
+    
+    document.getElementById('importInput').onchange = function(e) {
+        var file = e.target.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function(ev) {
+            try {
+                var data = JSON.parse(ev.target.result);
+                if (data.videos && Array.isArray(data.videos)) {
+                    var existing = getVids();
+                    saveVids(existing.concat(data.videos));
+                }
+                if (data.photos && Array.isArray(data.photos)) {
+                    var existing2 = getImgs();
+                    saveImgs(existing2.concat(data.photos));
+                }
+                toast('Data imported!');
+            } catch(err) {
+                toast('Invalid file', 'error');
+            }
+        };
+        reader.readAsText(file);
+        e.target.value = '';
+    };
+    
+    // ===== INIT =====
+    checkSession();
+})();
 </script>
 </body>
 </html>

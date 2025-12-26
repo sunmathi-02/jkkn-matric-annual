@@ -4,1446 +4,382 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JKKN Matriculation Higher Secondary School | 56th Annual Day</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&family=Bebas+Neue&family=Great+Vibes&family=Cinzel:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-
     <style>
-        :root {
-            --jkkn-green: #0a4d28;
-            --jkkn-yellow: #ffcc00;
-            --jkkn-white: #ffffff;
-            --deep-black: #020d07;
-            --glass-header: rgba(10, 77, 40, 0.9);
-            --gold-gradient: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-        }
-
+        :root { --jkkn-green: #0a4d28; --jkkn-yellow: #ffcc00; --deep-black: #020d07; --gold-gradient: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--deep-black);
-            color: white;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        #bg-canvas {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at center, #0e3a1f 0%, #020d07 100%);
-        }
-
-        /* --- STICKY NAV BAR --- */
-        .nav-bar {
-            position: fixed;
-            top: 0; width: 100%;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 40px; z-index: 2000;
-            background: var(--glass-header);
-            backdrop-filter: blur(20px);
-            border-bottom: 3px solid var(--jkkn-yellow);
-        }
-        .nav-bar img { height: 60px; width: 60px; border-radius: 50%; background: white; padding: 5px; border: 1px solid var(--jkkn-yellow); }
-        .nav-bar h1 { font-family: 'Bebas Neue', sans-serif; color: var(--jkkn-yellow); font-size: clamp(0.9rem, 4vw, 1.8rem); text-align: center; flex-grow: 1; }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; padding-top: 80px;
-        }
-        .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1; margin-bottom: 20px; text-shadow: 0 0 30px rgba(255,204,0,0.3); }
-
-        /* --- CIRCULAR COUNTDOWN --- */
-        .countdown-container { display: flex; gap: 20px; margin-top: 40px; }
-        .circle-unit { position: relative; width: 90px; height: 90px; display: flex; align-items: center; justify-content: center; flex-direction: column; }
-        .circle-unit svg { position: absolute; width: 100%; height: 100%; transform: rotate(-90deg); }
-        .circle-unit circle { fill: none; stroke-width: 5; stroke-linecap: round; }
-        .circle-bg { stroke: rgba(255, 255, 255, 0.1); }
-        .circle-progress { stroke: var(--jkkn-yellow); stroke-dasharray: 283; stroke-dashoffset: 0; transition: stroke-dashoffset 1s linear; filter: drop-shadow(0 0 8px var(--jkkn-yellow)); }
-        .number { font-size: 1.6rem; font-weight: 800; color: white; position: relative; top: -3px; }
-        .label { font-size: 0.5rem; text-transform: uppercase; letter-spacing: 1px; color: var(--jkkn-yellow); position: relative; top: -3px; }
-
-        /* --- INVITATION CARD --- */
-        .invitation-wrap { perspective: 1000px; padding: 100px 20px; display: flex; justify-content: center; }
-        .invite-card {
-            width: 100%; max-width: 750px; background: #fff; color: #111;
-            padding: 60px 40px; position: relative; text-align: center;
-            border: 15px solid transparent; border-image: var(--gold-gradient) 1;
-            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
-            box-shadow: 0 30px 80px rgba(0,0,0,0.8); transform-style: preserve-3d; transition: transform 0.1s ease;
-        }
-        .script-font { font-family: 'Great Vibes', cursive; font-size: 4rem; color: var(--jkkn-green); margin-bottom: 10px; }
-        .highlight-date { display: inline-block; margin: 20px 0; padding: 12px 25px; background: var(--jkkn-green); color: var(--jkkn-yellow); font-weight: 900; transform: skew(-10deg); font-size: 1.4rem; }
-
-        /* --- CHIEF GUEST SECTION --- */
-        .section-title { text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--jkkn-yellow); margin: 60px 0 40px; }
-        .guest-grid { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; max-width: 1400px; margin: auto; padding: 0 20px; }
-        .guest-card {
-            width: 420px; background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); border-radius: 40px;
-            padding: 50px 25px; text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative; overflow: hidden;
-        }
-        .guest-card:hover { transform: translateY(-20px); border-color: var(--jkkn-yellow); box-shadow: 0 0 40px rgba(255,204,0,0.2); }
-        .guest-photo-wrap { width: 180px; height: 180px; margin: 0 auto 25px; border-radius: 50%; padding: 6px; background: var(--gold-gradient); }
-        .guest-photo { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 5px solid #051a0f; transition: 0.4s; }
+        body { font-family: 'Outfit', sans-serif; background: var(--deep-black); color: white; overflow-x: hidden; }
+        #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at center, #0e3a1f, #020d07); }
         
-        /* Enhanced Guest Bio Styles */
-        .guest-bio { 
-            text-align: left; 
-            margin-top: 20px; 
-            padding: 20px; 
-            background: rgba(255,255,255,0.03); 
-            border-radius: 15px;
-            border-left: 3px solid var(--jkkn-yellow);
-        }
-        .guest-bio p { 
-            font-size: 0.9rem; 
-            line-height: 1.7; 
-            opacity: 0.85; 
-            margin-bottom: 12px;
-        }
-        .guest-bio .highlight {
-            color: var(--jkkn-yellow);
-            font-weight: 600;
-        }
-        .guest-achievements {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-        }
-        .achievement-tag {
-            background: rgba(255,204,0,0.15);
-            color: var(--jkkn-yellow);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            border: 1px solid rgba(255,204,0,0.3);
-        }
-        .alumni-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--jkkn-green);
-            color: var(--jkkn-yellow);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid var(--jkkn-yellow);
-            animation: glowBadge 2s ease-in-out infinite;
-        }
-        @keyframes glowBadge {
-            0%, 100% { box-shadow: 0 0 10px rgba(255,204,0,0.3); }
-            50% { box-shadow: 0 0 25px rgba(255,204,0,0.6); }
-        }
+        .nav-bar { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 10px 40px; z-index: 2000; background: rgba(10,77,40,0.9); backdrop-filter: blur(20px); border-bottom: 3px solid var(--jkkn-yellow); }
+        .nav-bar img { height: 55px; width: 55px; border-radius: 50%; background: white; padding: 4px; border: 2px solid var(--jkkn-yellow); }
+        .nav-bar h1 { font-family: 'Bebas Neue', sans-serif; color: var(--jkkn-yellow); font-size: clamp(0.8rem, 3.5vw, 1.6rem); text-align: center; flex-grow: 1; }
 
-        /* --- PROMO SECTION --- */
-        .promo-section {
-            padding: 80px 20px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .promo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .promo-card {
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.4s;
-        }
-        .promo-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--jkkn-yellow);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-        .promo-card img, .promo-card video {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-        .promo-card .promo-info {
-            padding: 20px;
-        }
-        .promo-card h4 {
-            color: var(--jkkn-yellow);
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-        }
-        .promo-card p {
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
-        .no-content-message {
-            text-align: center;
-            padding: 60px;
-            color: rgba(255,255,255,0.5);
-            font-style: italic;
-        }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 20px 60px; }
+        .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2.2rem, 7vw, 4.5rem); margin-bottom: 12px; text-shadow: 0 0 30px rgba(255,204,0,0.3); }
 
-        /* --- VIDEO PLAYER MODAL --- */
-        .video-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-        }
-        .video-modal.active { display: flex; }
-        .video-modal video {
-            max-width: 90%;
-            max-height: 80%;
-            border-radius: 20px;
-            border: 3px solid var(--jkkn-yellow);
-        }
-        .video-modal .close-btn {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--jkkn-green);
-            border: 2px solid var(--jkkn-yellow);
-            border-radius: 50%;
-            color: var(--jkkn-yellow);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .video-modal .close-btn:hover {
-            background: var(--jkkn-yellow);
-            color: var(--jkkn-green);
-        }
+        /* BIG COUNTDOWN */
+        .countdown-wrapper { margin-top: 45px; padding: 35px 45px; background: linear-gradient(145deg, rgba(10,77,40,0.85), rgba(6,50,25,0.9)); border-radius: 30px; border: 4px solid var(--jkkn-yellow); box-shadow: 0 0 80px rgba(255,204,0,0.25); }
+        .countdown-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--jkkn-yellow); letter-spacing: 5px; margin-bottom: 25px; }
+        .countdown-container { display: flex; gap: 25px; justify-content: center; flex-wrap: wrap; }
+        .countdown-unit { width: 130px; height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); border-radius: 20px; border: 3px solid rgba(255,204,0,0.5); box-shadow: 0 15px 40px rgba(0,0,0,0.5); position: relative; }
+        .countdown-unit svg { position: absolute; width: 100%; height: 100%; transform: rotate(-90deg); }
+        .countdown-unit circle { fill: none; stroke-width: 4; }
+        .circle-bg { stroke: rgba(255,255,255,0.1); }
+        .circle-progress { stroke: var(--jkkn-yellow); stroke-dasharray: 350; filter: drop-shadow(0 0 12px var(--jkkn-yellow)); transition: 1s; }
+        .countdown-number { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--jkkn-yellow); text-shadow: 0 0 25px rgba(255,204,0,0.9); z-index: 1; }
+        .countdown-label { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.85); z-index: 1; margin-top: 5px; font-weight: 600; }
+        .event-date-banner { margin-top: 30px; padding: 16px 40px; background: var(--jkkn-yellow); color: var(--jkkn-green); font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 3px; border-radius: 50px; display: inline-block; box-shadow: 0 10px 40px rgba(255,204,0,0.5); animation: pulseBanner 2s ease-in-out infinite; }
+        @keyframes pulseBanner { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
 
-        /* --- GALLERY LIGHTBOX --- */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-        }
-        .lightbox.active { display: flex; }
-        .lightbox img {
-            max-width: 90%;
-            max-height: 85%;
-            border-radius: 15px;
-            border: 3px solid var(--jkkn-yellow);
-        }
-        .lightbox .close-btn {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--jkkn-green);
-            border: 2px solid var(--jkkn-yellow);
-            border-radius: 50%;
-            color: var(--jkkn-yellow);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .lightbox .close-btn:hover {
-            background: var(--jkkn-yellow);
-            color: var(--jkkn-green);
-        }
-        .lightbox .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 60px;
-            height: 60px;
-            background: rgba(10,77,40,0.8);
-            border: 2px solid var(--jkkn-yellow);
-            border-radius: 50%;
-            color: var(--jkkn-yellow);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .lightbox .nav-btn:hover {
-            background: var(--jkkn-yellow);
-            color: var(--jkkn-green);
-        }
-        .lightbox .prev-btn { left: 30px; }
-        .lightbox .next-btn { right: 30px; }
+        .invitation-wrap { perspective: 1000px; padding: 70px 20px; display: flex; justify-content: center; }
+        .invite-card { width: 100%; max-width: 700px; background: #fff; color: #111; padding: 55px 35px; text-align: center; border: 12px solid transparent; border-image: var(--gold-gradient) 1; box-shadow: 0 30px 80px rgba(0,0,0,0.8); }
+        .script-font { font-family: 'Great Vibes', cursive; font-size: 3.2rem; color: var(--jkkn-green); margin-bottom: 10px; }
+        .highlight-date { display: inline-block; margin: 18px 0; padding: 12px 25px; background: var(--jkkn-green); color: var(--jkkn-yellow); font-weight: 900; transform: skew(-10deg); font-size: 1.3rem; }
 
-        /* --- AGENDA --- */
-        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-radius: 30px; padding: 50px; border: 1px solid rgba(255,255,255,0.1); margin: 40px auto; max-width: 1000px; }
-        .agenda-row { display: flex; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.1); align-items: center; }
-        .agenda-time { width: 130px; font-weight: 900; color: var(--jkkn-yellow); font-size: 1.1rem; }
+        .section-title { text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--jkkn-yellow); margin: 50px 0 35px; }
+        .guest-grid { display: flex; justify-content: center; gap: 35px; flex-wrap: wrap; max-width: 1000px; margin: auto; padding: 0 20px; }
+        .guest-card { width: 340px; background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); border-radius: 25px; padding: 28px 22px; text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; position: relative; }
+        .guest-card:hover { transform: translateY(-8px); border-color: var(--jkkn-yellow); }
+        .guest-photo-wrap { width: 120px; height: 120px; margin: 0 auto 15px; border-radius: 50%; padding: 4px; background: var(--gold-gradient); }
+        .guest-photo { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid #051a0f; }
+        .guest-role { display: inline-block; background: var(--jkkn-green); color: var(--jkkn-yellow); padding: 4px 14px; border-radius: 18px; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; margin-bottom: 8px; }
+        .guest-card h3 { font-size: 1.4rem; margin-bottom: 4px; }
+        .guest-card .designation { opacity: 0.7; font-size: 0.78rem; margin-bottom: 12px; line-height: 1.5; }
+        .guest-highlights { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; }
+        .highlight-tag { background: rgba(255,204,0,0.15); color: var(--jkkn-yellow); padding: 4px 10px; border-radius: 15px; font-size: 0.62rem; font-weight: 600; border: 1px solid rgba(255,204,0,0.3); }
+        .alumni-badge { position: absolute; top: 12px; right: 12px; background: var(--jkkn-yellow); color: var(--jkkn-green); padding: 4px 10px; border-radius: 12px; font-size: 0.55rem; font-weight: 800; }
 
-        /* --- MAP & CONTACT FOOTER --- */
-        .map-section { padding: 60px 20px; text-align: center; }
-        .map-container { max-width: 1100px; margin: 30px auto; border-radius: 30px; overflow: hidden; border: 5px solid var(--jkkn-yellow); box-shadow: 0 0 50px rgba(0,0,0,0.5); }
+        .promo-section { padding: 50px 20px; max-width: 1300px; margin: 0 auto; }
+        .promo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; margin-top: 25px; }
+        .promo-card { background: rgba(255,255,255,0.05); border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; cursor: pointer; }
+        .promo-card:hover { transform: translateY(-6px); border-color: var(--jkkn-yellow); }
+        .promo-card img, .promo-card video { width: 100%; height: 180px; object-fit: cover; }
+        .promo-card .promo-info { padding: 14px; }
+        .promo-card h4 { color: var(--jkkn-yellow); margin-bottom: 4px; font-size: 0.95rem; }
+        .promo-card p { opacity: 0.6; font-size: 0.8rem; }
+        .no-content-message { text-align: center; padding: 45px; color: rgba(255,255,255,0.4); grid-column: 1 / -1; }
+
+        .timeline-section { padding: 50px 20px; }
+        .timeline-wrapper { position: relative; max-width: 850px; margin: auto; }
+        .timeline-line { position: absolute; left: 50%; width: 2px; height: 100%; background: linear-gradient(to bottom, transparent, var(--jkkn-yellow), transparent); transform: translateX(-50%); }
+        .timeline-item { display: flex; justify-content: flex-end; padding-right: 50%; position: relative; margin-bottom: 25px; }
+        .timeline-item.right { justify-content: flex-start; padding-right: 0; padding-left: 50%; }
+        .timeline-dot { position: absolute; left: 50%; top: 18px; width: 12px; height: 12px; background: var(--jkkn-yellow); border: 3px solid var(--deep-black); border-radius: 50%; transform: translateX(-50%); z-index: 2; }
+        .timeline-card { background: rgba(255,255,255,0.05); padding: 18px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.1); width: 85%; margin: 0 12px; transition: 0.3s; }
+        .timeline-card:hover { border-color: var(--jkkn-yellow); }
+        .timeline-card h3 { color: var(--jkkn-yellow); font-size: 0.95rem; margin-bottom: 4px; }
+        .timeline-card p { opacity: 0.7; font-size: 0.8rem; }
+        .event-num { position: absolute; top: 8px; right: 12px; font-family: 'Bebas Neue'; font-size: 1.3rem; color: rgba(255,204,0,0.2); }
+
+        .map-section { padding: 50px 20px; text-align: center; }
+        .map-container { max-width: 950px; margin: 25px auto; border-radius: 18px; overflow: hidden; border: 4px solid var(--jkkn-yellow); }
         
-        .contact-footer { background: #010804; border-top: 3px solid var(--jkkn-yellow); padding: 80px 40px 40px; }
-        .footer-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .footer-info h3 { color: var(--jkkn-yellow); font-family: 'Bebas Neue'; font-size: 2rem; margin-bottom: 20px; }
-        .footer-info p { opacity: 0.8; line-height: 1.8; margin-bottom: 15px; }
-        .footer-links a { display: block; color: white; text-decoration: none; margin-bottom: 12px; opacity: 0.7; transition: 0.3s; }
+        .contact-footer { background: #010804; border-top: 3px solid var(--jkkn-yellow); padding: 50px 35px 25px; }
+        .footer-grid { max-width: 1000px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
+        .footer-info h3 { color: var(--jkkn-yellow); font-family: 'Bebas Neue'; font-size: 1.6rem; margin-bottom: 12px; }
+        .footer-info p { opacity: 0.7; line-height: 1.6; font-size: 0.85rem; }
+        .footer-links a { display: block; color: white; text-decoration: none; margin-bottom: 8px; opacity: 0.6; font-size: 0.85rem; transition: 0.3s; }
         .footer-links a:hover { opacity: 1; color: var(--jkkn-yellow); }
 
-        .reveal { opacity: 0; transform: translateY(50px); transition: 1.2s all ease; }
+        .reveal { opacity: 0; transform: translateY(35px); transition: 0.9s; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        @media (max-width: 600px) {
-            .nav-bar { padding: 10px 15px; }
-            .countdown-container { gap: 10px; }
-            .circle-unit { width: 75px; height: 75px; }
-            .agenda-row { flex-direction: column; align-items: flex-start; }
-            .footer-grid { text-align: center; }
-            .guest-card { width: 100%; }
-        }
+        /* CHATBOT */
+        .chatbot-container { position: fixed; bottom: 25px; right: 25px; z-index: 9999; }
+        .chatbot-toggle { width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(145deg, var(--jkkn-green), #0d6930); border: 4px solid var(--jkkn-yellow); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 35px rgba(0,0,0,0.5), 0 0 30px rgba(255,204,0,0.4); transition: 0.3s; animation: botPulse 2s infinite; }
+        .chatbot-toggle:hover { transform: scale(1.1); }
+        @keyframes botPulse { 0%, 100% { box-shadow: 0 8px 35px rgba(0,0,0,0.5), 0 0 30px rgba(255,204,0,0.4); } 50% { box-shadow: 0 8px 35px rgba(0,0,0,0.5), 0 0 50px rgba(255,204,0,0.6); } }
+        .bot-face { width: 45px; height: 45px; position: relative; }
+        .bot-eyes { display: flex; justify-content: space-between; padding: 0 5px; }
+        .bot-eye { width: 12px; height: 12px; background: var(--jkkn-yellow); border-radius: 50%; animation: eyeBlink 3s infinite; }
+        @keyframes eyeBlink { 0%, 90%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
+        .bot-mouth { width: 20px; height: 9px; background: var(--jkkn-yellow); border-radius: 0 0 10px 10px; margin: 8px auto 0; }
+        .bot-antenna { width: 4px; height: 12px; background: var(--jkkn-yellow); margin: 0 auto 5px; border-radius: 2px; position: relative; }
+        .bot-antenna::after { content: ''; position: absolute; top: -7px; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: var(--jkkn-yellow); border-radius: 50%; animation: antennaPulse 1s infinite; }
+        @keyframes antennaPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
-        /* ========== AI ROBOT STYLES ========== */
-        .ai-robot-container {
-            position: fixed;
-            z-index: 9999;
-            pointer-events: none;
-            transition: left 0.3s ease-out, top 0.3s ease-out;
-        }
+        .chat-window { position: absolute; bottom: 85px; right: 0; width: 380px; max-width: calc(100vw - 40px); height: 500px; max-height: calc(100vh - 140px); background: linear-gradient(145deg, #0a4d28, #063d1c); border-radius: 22px; border: 3px solid var(--jkkn-yellow); box-shadow: 0 25px 70px rgba(0,0,0,0.7); display: none; flex-direction: column; overflow: hidden; }
+        .chat-window.active { display: flex; animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .chat-header { background: var(--jkkn-green); padding: 15px 18px; display: flex; align-items: center; gap: 12px; border-bottom: 3px solid var(--jkkn-yellow); }
+        .chat-header-icon { width: 42px; height: 42px; background: var(--jkkn-yellow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+        .chat-header-info h4 { color: var(--jkkn-yellow); font-size: 1rem; margin-bottom: 2px; }
+        .chat-header-info p { color: rgba(255,255,255,0.7); font-size: 0.7rem; }
+        .chat-close { margin-left: auto; background: none; border: none; color: var(--jkkn-yellow); font-size: 1.6rem; cursor: pointer; }
+        .chat-messages { flex: 1; padding: 18px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+        .chat-messages::-webkit-scrollbar { width: 5px; }
+        .chat-messages::-webkit-scrollbar-thumb { background: var(--jkkn-yellow); border-radius: 5px; }
+        .message { max-width: 85%; padding: 12px 16px; border-radius: 18px; font-size: 0.88rem; line-height: 1.55; animation: msgPop 0.3s ease; }
+        @keyframes msgPop { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+        .message.bot { background: rgba(255,255,255,0.1); color: white; align-self: flex-start; border-bottom-left-radius: 5px; }
+        .message.user { background: var(--jkkn-yellow); color: var(--jkkn-green); align-self: flex-end; border-bottom-right-radius: 5px; font-weight: 600; }
+        .typing-indicator { display: none; align-self: flex-start; padding: 14px 18px; background: rgba(255,255,255,0.1); border-radius: 18px; }
+        .typing-indicator.active { display: flex; gap: 5px; }
+        .typing-indicator span { width: 8px; height: 8px; background: var(--jkkn-yellow); border-radius: 50%; animation: typingBounce 1s infinite; }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+        .quick-replies { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 15px 12px; }
+        .quick-reply { background: rgba(255,204,0,0.15); color: var(--jkkn-yellow); border: 1px solid rgba(255,204,0,0.4); padding: 7px 12px; border-radius: 18px; font-size: 0.72rem; cursor: pointer; transition: 0.3s; font-family: 'Outfit'; }
+        .quick-reply:hover { background: var(--jkkn-yellow); color: var(--jkkn-green); }
+        .chat-input-area { padding: 12px; border-top: 2px solid rgba(255,204,0,0.3); display: flex; gap: 8px; }
+        .chat-input { flex: 1; padding: 11px 16px; border: 2px solid rgba(255,204,0,0.3); border-radius: 22px; background: rgba(255,255,255,0.1); color: white; font-size: 0.88rem; font-family: 'Outfit'; }
+        .chat-input:focus { outline: none; border-color: var(--jkkn-yellow); }
+        .chat-input::placeholder { color: rgba(255,255,255,0.5); }
+        .chat-send { width: 42px; height: 42px; border-radius: 50%; background: var(--jkkn-yellow); border: none; cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
+        .chat-send:hover { transform: scale(1.1); }
 
-        .ai-robot {
-            width: 80px;
-            height: 100px;
-            position: relative;
-            animation: robotFloat 2s ease-in-out infinite;
-            cursor: pointer;
-            pointer-events: auto;
-        }
-
-        .ai-robot:hover {
-            transform: scale(1.1);
-        }
-
-        .robot-head {
-            width: 60px;
-            height: 50px;
-            background: linear-gradient(145deg, var(--jkkn-white), #e0e0e0);
-            border-radius: 15px 15px 10px 10px;
-            margin: 0 auto;
-            position: relative;
-            border: 3px solid var(--jkkn-green);
-            box-shadow: 0 0 20px rgba(10, 77, 40, 0.4), inset 0 -5px 10px rgba(0,0,0,0.1);
-        }
-
-        .robot-antenna {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 15px;
-            background: linear-gradient(to top, var(--jkkn-green), var(--jkkn-yellow));
-            border-radius: 2px;
-        }
-
-        .robot-antenna::after {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 12px;
-            height: 12px;
-            background: var(--jkkn-yellow);
-            border-radius: 50%;
-            animation: antennaBlink 1.5s ease-in-out infinite;
-            box-shadow: 0 0 15px var(--jkkn-yellow), 0 0 30px var(--jkkn-yellow);
-        }
-
-        .robot-eyes {
-            display: flex;
-            justify-content: space-around;
-            padding: 12px 8px;
-        }
-
-        .robot-eye {
-            width: 16px;
-            height: 16px;
-            background: var(--jkkn-green);
-            border-radius: 50%;
-            position: relative;
-            animation: eyeGlow 2s ease-in-out infinite;
-            box-shadow: 0 0 10px var(--jkkn-green), inset 0 0 5px rgba(255,255,255,0.5);
-        }
-
-        .robot-eye::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: var(--jkkn-yellow);
-            border-radius: 50%;
-            top: 5px;
-            left: 5px;
-        }
-
-        .robot-mouth {
-            width: 25px;
-            height: 8px;
-            background: linear-gradient(90deg, var(--jkkn-green), var(--jkkn-yellow), var(--jkkn-green));
-            margin: 0 auto;
-            border-radius: 4px;
-            animation: mouthTalk 0.5s ease-in-out infinite;
-        }
-
-        .robot-body {
-            width: 50px;
-            height: 35px;
-            background: linear-gradient(145deg, var(--jkkn-green), #0d6930);
-            margin: 3px auto 0;
-            border-radius: 8px;
-            position: relative;
-            border: 2px solid var(--jkkn-yellow);
-            box-shadow: 0 0 15px rgba(255, 204, 0, 0.3);
-        }
-
-        .robot-chest-light {
-            width: 20px;
-            height: 20px;
-            background: var(--jkkn-yellow);
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border: 2px solid var(--jkkn-white);
-            animation: chestPulse 1.5s ease-in-out infinite;
-            box-shadow: 0 0 10px var(--jkkn-yellow);
-        }
-
-        .robot-arm {
-            position: absolute;
-            width: 8px;
-            height: 25px;
-            background: linear-gradient(145deg, var(--jkkn-green), #0d6930);
-            border-radius: 4px;
-            top: 5px;
-            border: 1px solid var(--jkkn-yellow);
-        }
-
-        .robot-arm.left {
-            left: -12px;
-            animation: armWaveLeft 1s ease-in-out infinite;
-            transform-origin: top center;
-        }
-
-        .robot-arm.right {
-            right: -12px;
-            animation: armWaveRight 1s ease-in-out infinite 0.5s;
-            transform-origin: top center;
-        }
-
-        .robot-tracks {
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-            margin-top: 3px;
-        }
-
-        .robot-wheel {
-            width: 18px;
-            height: 12px;
-            background: linear-gradient(145deg, var(--jkkn-green), #063d1c);
-            border-radius: 6px;
-            border: 2px solid var(--jkkn-yellow);
-        }
-
-        .robot-wheel.moving {
-            animation: wheelSpin 0.3s linear infinite;
-        }
-
-        /* Speech Bubble */
-        .robot-speech {
-            position: absolute;
-            top: -80px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--jkkn-green), #0d6930);
-            color: var(--jkkn-yellow);
-            padding: 12px 18px;
-            border-radius: 20px;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 14px;
-            white-space: nowrap;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.5), 0 0 20px rgba(255, 204, 0, 0.3);
-            border: 3px solid var(--jkkn-yellow);
-            animation: speechFloat 3s ease-in-out infinite;
-            letter-spacing: 1px;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s;
-        }
-
-        .robot-speech.visible {
-            opacity: 1;
-            visibility: visible;
-            animation: speechPop 0.5s ease-out, speechFloat 3s ease-in-out infinite;
-        }
-
-        .robot-speech::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-left: 12px solid transparent;
-            border-right: 12px solid transparent;
-            border-top: 14px solid var(--jkkn-green);
-        }
-
-        .click-hint {
-            position: absolute;
-            bottom: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 10px;
-            color: var(--jkkn-yellow);
-            font-family: 'Outfit', sans-serif;
-            white-space: nowrap;
-            opacity: 0.7;
-            animation: hintPulse 2s ease-in-out infinite;
-        }
-
-        .robot-trail {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            background: var(--jkkn-yellow);
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0.6;
-            animation: trailFade 1s ease-out forwards;
-            z-index: 9998;
-        }
-
-        /* Animations */
-        @keyframes robotFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        @keyframes antennaBlink {
-            0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
-            50% { opacity: 0.6; transform: translateX(-50%) scale(0.8); }
-        }
-
-        @keyframes eyeGlow {
-            0%, 100% { box-shadow: 0 0 10px var(--jkkn-green); }
-            50% { box-shadow: 0 0 20px var(--jkkn-green), 0 0 30px var(--jkkn-yellow); }
-        }
-
-        @keyframes mouthTalk {
-            0%, 100% { height: 8px; }
-            50% { height: 12px; }
-        }
-
-        @keyframes chestPulse {
-            0%, 100% { box-shadow: 0 0 10px var(--jkkn-yellow); }
-            50% { box-shadow: 0 0 25px var(--jkkn-yellow), 0 0 40px var(--jkkn-yellow); }
-        }
-
-        @keyframes armWaveLeft {
-            0%, 100% { transform: rotate(-15deg); }
-            50% { transform: rotate(15deg); }
-        }
-
-        @keyframes armWaveRight {
-            0%, 100% { transform: rotate(15deg); }
-            50% { transform: rotate(-15deg); }
-        }
-
-        @keyframes wheelSpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes speechPop {
-            0% { transform: translateX(-50%) scale(0); }
-            50% { transform: translateX(-50%) scale(1.1); }
-            100% { transform: translateX(-50%) scale(1); }
-        }
-
-        @keyframes speechFloat {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        @keyframes trailFade {
-            0% { opacity: 0.6; transform: scale(1); }
-            100% { opacity: 0; transform: scale(0); }
-        }
-
-        @keyframes hintPulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        /* Timeline Styles */
-        .timeline-wrapper {
-            position: relative;
-            max-width: 1000px;
-            margin: auto;
-            padding: 40px 0;
-        }
-
-        .timeline-line {
-            position: absolute;
-            left: 50%;
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent, var(--jkkn-yellow), transparent);
-            transform: translateX(-50%);
-            z-index: 0;
-        }
-
-        .timeline-item {
-            display: flex;
-            justify-content: flex-end;
-            padding-right: 50%;
-            position: relative;
-            margin-bottom: 40px;
-            width: 100%;
-        }
-
-        .timeline-item.right {
-            justify-content: flex-start;
-            padding-right: 0;
-            padding-left: 50%;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            top: 30px;
-            width: 16px;
-            height: 16px;
-            background: var(--jkkn-yellow);
-            border: 4px solid var(--deep-black);
-            border-radius: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            box-shadow: 0 0 10px var(--jkkn-yellow);
-        }
-
-        .timeline-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            padding: 25px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            width: 85%;
-            margin: 0 20px;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-        }
-
-        .timeline-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--jkkn-yellow);
-            transform: scale(1.05);
-        }
-
-        .event-num {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-family: 'Bebas Neue';
-            font-size: 2rem;
-            color: rgba(255, 204, 0, 0.2);
-        }
-
-        .status-tag {
-            display: inline-block;
-            font-size: 0.6rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: var(--jkkn-yellow);
-            border: 1px solid var(--jkkn-yellow);
-            padding: 3px 10px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            animation: glowPulse 2s infinite;
-        }
-
-        .highlight-card { border-left: 4px solid var(--jkkn-yellow); }
-        .cultural-card { border-left: 4px solid #00d4ff; }
-
-        @keyframes glowPulse {
-            0% { box-shadow: 0 0 0px var(--jkkn-yellow); opacity: 0.7; }
-            50% { box-shadow: 0 0 10px var(--jkkn-yellow); opacity: 1; }
-            100% { box-shadow: 0 0 0px var(--jkkn-yellow); opacity: 0.7; }
-        }
+        /* Modals */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 10000; justify-content: center; align-items: center; }
+        .modal-overlay.active { display: flex; }
+        .modal-close { position: absolute; top: 25px; right: 25px; width: 45px; height: 45px; background: var(--jkkn-green); border: 2px solid var(--jkkn-yellow); border-radius: 50%; color: var(--jkkn-yellow); font-size: 1.4rem; cursor: pointer; }
+        .lightbox img, .video-modal video { max-width: 90%; max-height: 85%; border-radius: 12px; border: 3px solid var(--jkkn-yellow); }
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 45px; height: 45px; background: rgba(10,77,40,0.8); border: 2px solid var(--jkkn-yellow); border-radius: 50%; color: var(--jkkn-yellow); font-size: 1.3rem; cursor: pointer; }
+        .prev-btn { left: 25px; }
+        .next-btn { right: 25px; }
+        .admin-login-card { background: linear-gradient(145deg, #0a4d28, #063d1c); padding: 35px; border-radius: 22px; border: 3px solid var(--jkkn-yellow); max-width: 360px; width: 90%; text-align: center; position: relative; }
+        .admin-login-card h2 { font-family: 'Bebas Neue'; color: var(--jkkn-yellow); font-size: 1.8rem; margin-bottom: 22px; }
+        .admin-login-card input { width: 100%; padding: 13px; margin-bottom: 10px; border: 2px solid rgba(255,204,0,0.3); border-radius: 10px; background: rgba(255,255,255,0.1); color: white; font-size: 0.95rem; }
+        .admin-login-card input:focus { outline: none; border-color: var(--jkkn-yellow); }
+        .admin-login-card button { width: 100%; padding: 13px; background: var(--jkkn-yellow); color: var(--jkkn-green); border: none; border-radius: 10px; font-size: 1rem; font-weight: 800; cursor: pointer; margin-top: 8px; }
+        .login-error { color: #ff6b6b; font-size: 0.82rem; margin-bottom: 8px; display: none; }
+        .login-error.show { display: block; }
 
         @media (max-width: 768px) {
-            .timeline-line { left: 20px; }
-            .timeline-dot { left: 20px; transform: none; }
-            .timeline-item, .timeline-item.right {
-                justify-content: flex-start;
-                padding-left: 40px;
-                padding-right: 0;
-            }
-            .timeline-card { width: 90%; }
+            .nav-bar { padding: 8px 15px; }
+            .nav-bar img { height: 45px; width: 45px; }
+            .countdown-container { gap: 15px; }
+            .countdown-unit { width: 100px; height: 120px; }
+            .countdown-number { font-size: 3rem; }
+            .countdown-wrapper { padding: 25px 20px; margin: 30px 15px; }
+            .timeline-line { left: 18px; }
+            .timeline-dot { left: 18px; }
+            .timeline-item, .timeline-item.right { padding-left: 38px; padding-right: 0; justify-content: flex-start; }
+            .guest-card { width: 100%; }
+            .chat-window { width: calc(100vw - 30px); right: -10px; }
+            .chatbot-container { bottom: 15px; right: 15px; }
         }
-
         @media (max-width: 480px) {
-            .ai-robot-container {
-                transform: scale(0.7);
-            }
-            .robot-speech {
-                font-size: 11px;
-                padding: 8px 12px;
-            }
+            .countdown-unit { width: 72px; height: 90px; }
+            .countdown-number { font-size: 2rem; }
+            .countdown-label { font-size: 0.6rem; letter-spacing: 1px; }
+            .event-date-banner { font-size: 0.95rem; padding: 12px 20px; }
         }
-
-        /* Admin Login Modal Styles */
-        .admin-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 20000;
-            justify-content: center;
-            align-items: center;
-        }
-        .admin-modal.active { display: flex; }
-        .admin-login-card {
-            background: linear-gradient(145deg, #0a4d28, #063d1c);
-            padding: 50px;
-            border-radius: 30px;
-            border: 3px solid var(--jkkn-yellow);
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.8);
-        }
-        .admin-login-card h2 {
-            font-family: 'Bebas Neue', sans-serif;
-            color: var(--jkkn-yellow);
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-        }
-        .admin-login-card input {
-            width: 100%;
-            padding: 15px 20px;
-            margin-bottom: 15px;
-            border: 2px solid rgba(255,204,0,0.3);
-            border-radius: 15px;
-            background: rgba(255,255,255,0.1);
-            color: white;
-            font-size: 1rem;
-            font-family: 'Outfit', sans-serif;
-            transition: 0.3s;
-        }
-        .admin-login-card input:focus {
-            outline: none;
-            border-color: var(--jkkn-yellow);
-            background: rgba(255,255,255,0.15);
-        }
-        .admin-login-card input::placeholder {
-            color: rgba(255,255,255,0.5);
-        }
-        .admin-login-card button {
-            width: 100%;
-            padding: 15px;
-            background: var(--jkkn-yellow);
-            color: var(--jkkn-green);
-            border: none;
-            border-radius: 15px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            cursor: pointer;
-            transition: 0.3s;
-            font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 2px;
-        }
-        .admin-login-card button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(255,204,0,0.3);
-        }
-        .admin-login-card .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            background: transparent;
-            border: 2px solid var(--jkkn-yellow);
-            border-radius: 50%;
-            color: var(--jkkn-yellow);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .admin-login-card .close-modal:hover {
-            background: var(--jkkn-yellow);
-            color: var(--jkkn-green);
-        }
-        .login-error {
-            color: #ff4444;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            display: none;
-        }
-        .login-error.show { display: block; }
     </style>
 </head>
 <body>
-
     <canvas id="bg-canvas"></canvas>
-
-    <!-- ========== AI ROBOT ========== -->
-    <div class="ai-robot-container" id="aiRobot">
-        <div class="robot-speech" id="robotSpeech">
-            🎉 Welcome to 56th Annual Day!
-        </div>
-        <div class="ai-robot" id="robotBody" onclick="robotClick()">
-            <div class="robot-head">
-                <div class="robot-antenna"></div>
-                <div class="robot-eyes">
-                    <div class="robot-eye"></div>
-                    <div class="robot-eye"></div>
-                </div>
-                <div class="robot-mouth"></div>
-            </div>
-            <div class="robot-body">
-                <div class="robot-chest-light"></div>
-                <div class="robot-arm left"></div>
-                <div class="robot-arm right"></div>
-            </div>
-            <div class="robot-tracks">
-                <div class="robot-wheel" id="wheel1"></div>
-                <div class="robot-wheel" id="wheel2"></div>
-            </div>
-            <div class="click-hint">👆 Tap Me!</div>
-        </div>
-    </div>
-
-    <!-- Admin Login Modal -->
-    <div class="admin-modal" id="adminModal">
-        <div class="admin-login-card" style="position: relative;">
-            <button class="close-modal" onclick="closeAdminModal()">×</button>
-            <h2>🔐 Admin Login</h2>
-            <div class="login-error" id="loginError">Invalid credentials. Please try again.</div>
-            <input type="text" id="adminUsername" placeholder="Username" autocomplete="off">
-            <input type="password" id="adminPassword" placeholder="Password">
-            <button onclick="attemptLogin()">Login to Admin Panel</button>
-            <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.6;">Contact school IT for credentials</p>
-        </div>
-    </div>
-
-    <!-- Video Modal -->
-    <div class="video-modal" id="videoModal">
-        <button class="close-btn" onclick="closeVideoModal()">×</button>
-        <video id="modalVideo" controls></video>
-    </div>
-
-    <!-- Image Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <button class="close-btn" onclick="closeLightbox()">×</button>
-        <button class="nav-btn prev-btn" onclick="navigateLightbox(-1)">‹</button>
-        <img id="lightboxImg" src="" alt="">
-        <button class="nav-btn next-btn" onclick="navigateLightbox(1)">›</button>
-    </div>
 
     <nav class="nav-bar">
         <img src="logo 2.jpeg" alt="JKKN Logo">
-        
-        <div class="header-text">
-            <h1>JKKN MATRICULATION HIGHER SECONDARY SCHOOL</h1>
-            <p style="font-size: 0.65rem; color: white; letter-spacing: 2px; font-weight: 600; text-align: center;">KOMARAPALAYAM, NAMAKKAL</p>
-        </div>
-        
+        <div><h1>JKKN MATRICULATION HIGHER SECONDARY SCHOOL</h1><p style="font-size:0.55rem;color:white;letter-spacing:2px;text-align:center;">KOMARAPALAYAM, NAMAKKAL</p></div>
         <img src="right-logo.png" alt="School Logo">
     </nav>
 
     <header class="hero">
-        <div class="hero-content animate__animated animate__zoomIn">
-            <h2 style="color: var(--jkkn-yellow); letter-spacing: 6px; font-weight: 300;">ESTABLISHED 1970</h2>
+        <div class="hero-content">
+            <h2 style="color:var(--jkkn-yellow);letter-spacing:5px;font-weight:300;font-size:0.95rem;">ESTABLISHED 1970</h2>
             <h1>56th ANNUAL DAY</h1>
-            <p style="letter-spacing: 4px; color: #aaa;">HONOURING THE PAST | EMPOWERING THE FUTURE</p>
-
-            <div class="countdown-container">
-                <div class="circle-unit"><svg><circle class="circle-bg" cx="45" cy="45" r="40"></circle><circle id="days-ring" class="circle-progress" cx="45" cy="45" r="40"></circle></svg><span class="number" id="days">00</span><span class="label">Days</span></div>
-                <div class="circle-unit"><svg><circle class="circle-bg" cx="45" cy="45" r="40"></circle><circle id="hours-ring" class="circle-progress" cx="45" cy="45" r="40"></circle></svg><span class="number" id="hours">00</span><span class="label">Hrs</span></div>
-                <div class="circle-unit"><svg><circle class="circle-bg" cx="45" cy="45" r="40"></circle><circle id="mins-ring" class="circle-progress" cx="45" cy="45" r="40"></circle></svg><span class="number" id="mins">00</span><span class="label">Min</span></div>
-                <div class="circle-unit"><svg><circle class="circle-bg" cx="45" cy="45" r="40"></circle><circle id="secs-ring" class="circle-progress" cx="45" cy="45" r="40"></circle></svg><span class="number" id="secs">00</span><span class="label">Sec</span></div>
+            <p style="letter-spacing:3px;color:#aaa;font-size:0.85rem;">HONOURING THE PAST | EMPOWERING THE FUTURE</p>
+            <div class="countdown-wrapper">
+                <div class="countdown-title">⏰ COUNTDOWN TO THE BIG DAY</div>
+                <div class="countdown-container">
+                    <div class="countdown-unit"><svg viewBox="0 0 120 120"><circle class="circle-bg" cx="60" cy="60" r="52"/><circle id="days-ring" class="circle-progress" cx="60" cy="60" r="52"/></svg><span class="countdown-number" id="days">00</span><span class="countdown-label">Days</span></div>
+                    <div class="countdown-unit"><svg viewBox="0 0 120 120"><circle class="circle-bg" cx="60" cy="60" r="52"/><circle id="hours-ring" class="circle-progress" cx="60" cy="60" r="52"/></svg><span class="countdown-number" id="hours">00</span><span class="countdown-label">Hours</span></div>
+                    <div class="countdown-unit"><svg viewBox="0 0 120 120"><circle class="circle-bg" cx="60" cy="60" r="52"/><circle id="mins-ring" class="circle-progress" cx="60" cy="60" r="52"/></svg><span class="countdown-number" id="mins">00</span><span class="countdown-label">Minutes</span></div>
+                    <div class="countdown-unit"><svg viewBox="0 0 120 120"><circle class="circle-bg" cx="60" cy="60" r="52"/><circle id="secs-ring" class="circle-progress" cx="60" cy="60" r="52"/></svg><span class="countdown-number" id="secs">00</span><span class="countdown-label">Seconds</span></div>
+                </div>
+                <div class="event-date-banner">📅 TUESDAY, 6TH JANUARY 2026 | 9:00 AM</div>
             </div>
         </div>
     </header>
 
     <section class="invitation-wrap">
-        <div class="invite-card reveal" id="tiltCard">
+        <div class="invite-card reveal">
             <div class="script-font">Cordially Invites You</div>
-            <div style="color: #333; line-height: 1.8;">
-                The Management, Principal, Senior Learners and Learners of <br>
-                <strong style="color: var(--jkkn-green); font-size: 1.2rem;">JKKN MATRICULATION HIGHER SECONDARY SCHOOL</strong> <br>
-                request the pleasure of your presence on our <br>
-                <div style="font-weight: 900; font-size: 2rem; margin: 15px 0; color: #000; font-family: 'Cinzel';">56th Annual Day Celebration</div>
-                <div class="highlight-date">Tuesday, 06th January 2026</div>
-                <br><span style="font-size: 1.2rem; font-weight: 600;">at 9:00 AM in the School Premises</span>
-            </div>
+            <div style="color:#333;line-height:1.7;">The Management, Principal & Learners of<br><strong style="color:var(--jkkn-green);font-size:1.1rem;">JKKN MATRICULATION HIGHER SECONDARY SCHOOL</strong><br>request the pleasure of your presence at our<div style="font-weight:900;font-size:1.8rem;margin:12px 0;color:#000;font-family:'Cinzel';">56th Annual Day Celebration</div><div class="highlight-date">Tuesday, 06th January 2026</div><br><span style="font-size:1rem;font-weight:600;">at 9:00 AM in the School Premises</span></div>
         </div>
     </section>
 
     <section>
         <h2 class="section-title reveal">Dignitaries of the Day</h2>
         <div class="guest-grid">
-            <!-- Chief Guest Card -->
             <div class="guest-card reveal">
                 <div class="guest-photo-wrap"><img src="parween sultan.jpg" alt="Dr. Parveen Sultana" class="guest-photo"></div>
-                <span style="color: var(--jkkn-yellow); font-weight: 900; font-size: 0.8rem;">CHIEF GUEST</span>
-                <h3 style="font-size: 2rem; margin: 10px 0;">Prof. Dr. Parveen Sultana</h3>
-                <p style="opacity: 0.8; font-weight: 600;">M.A., B.Ed., Ph.D.</p>
-                <p style="opacity: 0.7; font-size: 0.9rem;">Tamil Orator & Motivational Speaker</p>
-                
-                <div class="guest-bio">
-                    <p>Professor in Tamil Department at <span class="highlight">Justice Bashir Ahamed Women's College</span>, serving since 1999 with over 25 years of dedicated service.</p>
-                    <p>An internationally acclaimed speaker who has inspired audiences across <span class="highlight">America, Australia, France, Hong Kong, Malaysia, Singapore</span> and Middle Eastern countries.</p>
-                    <p>Author of <span class="highlight">7 research books</span> and founder of <span class="highlight">The Parkar Tamil Research Centre</span> which has compiled university research papers into accessible publications for students.</p>
-                    <p>Conducts corporate workshops for leading organizations including <span class="highlight">Titan PTY Limited, Chennai Silks, and Kumaran Aravind Mills</span> on team building, emotional intelligence, and decision-making.</p>
-                    <div class="guest-achievements">
-                        <span class="achievement-tag">Ph.D. Islamic Literature</span>
-                        <span class="achievement-tag">TV Commentator</span>
-                        <span class="achievement-tag">Pattimandram Expert</span>
-                        <span class="achievement-tag">P.G. Folklore</span>
-                        <span class="achievement-tag">7 Research Books</span>
-                    </div>
-                </div>
+                <span class="guest-role">CHIEF GUEST</span>
+                <h3>Prof. Dr. Parveen Sultana</h3>
+                <p class="designation">Tamil Orator & Motivational Speaker<br>M.A., B.Ed., Ph.D.</p>
+                <div class="guest-highlights"><span class="highlight-tag">25+ Years Teaching</span><span class="highlight-tag">International Speaker</span><span class="highlight-tag">7 Research Books</span><span class="highlight-tag">TV Commentator</span></div>
             </div>
-
-            <!-- Guest of Honour Card - Enhanced -->
             <div class="guest-card reveal">
-                <div class="alumni-badge">⭐ Proud Alumnus</div>
+                <span class="alumni-badge">⭐ PROUD ALUMNUS</span>
                 <div class="guest-photo-wrap"><img src="Guest of Honor -Mr Gogulram RB.jpeg" alt="Mr. R.B. Gogulram" class="guest-photo"></div>
-                <span style="color: var(--jkkn-yellow); font-weight: 900; font-size: 0.8rem;">GUEST OF HONOUR</span>
-                <h3 style="font-size: 2rem; margin: 10px 0;">Mr. R.B. Gogulram</h3>
-                <p style="opacity: 0.8; font-weight: 600;">B.E., M.E. (Embedded Systems & AI)</p>
-                <p style="opacity: 0.7; font-size: 0.9rem;">Manager – AI Operations, ZOHO Corporation</p>
-                
-                <div class="guest-bio">
-                    <p>A distinguished alumnus who completed his entire schooling at <span class="highlight">JKK Nattraja Matriculation Higher Secondary School (1998-2012)</span> from LKG to 12th Standard.</p>
-                    <p>Served as <span class="highlight">School Pupil Leader (SPL)</span> in 12th Standard and <span class="highlight">Assistant School Pupil Leader (ASPL)</span> from 9th to 11th Standard. Recognized as <span class="highlight">Best Outgoing Performer 2012</span>.</p>
-                    <p>A trained <span class="highlight">NCC Cadet (C-Certificate holder)</span> and passionate <span class="highlight">volleyball player</span> who represented the school in zonal-level tournaments.</p>
-                    <p>Pursued B.E. in Electronics & Communication from <span class="highlight">Thiagarajar College of Engineering, Madurai</span>, where he served as General Secretary of the ECE Department.</p>
-                    <p>Currently leading AI adoption initiatives at <span class="highlight">ZOHO Corporation</span>, driving automation and operational excellence across teams.</p>
-                    <div class="guest-achievements">
-                        <span class="achievement-tag">SPL 2012</span>
-                        <span class="achievement-tag">NCC C-Certificate</span>
-                        <span class="achievement-tag">ZOHO AI Lead</span>
-                        <span class="achievement-tag">TCE General Secretary</span>
-                        <span class="achievement-tag">Best Outgoing 2012</span>
-                        <span class="achievement-tag">Volleyball Champion</span>
-                    </div>
-                </div>
+                <span class="guest-role">GUEST OF HONOUR</span>
+                <h3>Mr. R.B. Gogulram</h3>
+                <p class="designation">Manager – AI Operations, ZOHO Corp<br>B.E., M.E. (Embedded Systems & AI)</p>
+                <div class="guest-highlights"><span class="highlight-tag">JKKN 1998-2012</span><span class="highlight-tag">SPL 2012</span><span class="highlight-tag">ZOHO AI Lead</span><span class="highlight-tag">NCC C-Cert</span></div>
             </div>
         </div>
     </section>
 
-    <!-- PROMO VIDEOS SECTION -->
-    <section class="promo-section reveal">
-        <h2 class="section-title">Promo Videos</h2>
-        <div class="promo-grid" id="videoGallery">
-            <div class="no-content-message" id="noVideosMsg">
-                <p>🎬 Promo videos will be added soon. Stay tuned!</p>
-            </div>
-        </div>
-    </section>
+    <section class="promo-section reveal"><h2 class="section-title">Promo Videos</h2><div class="promo-grid" id="videoGallery"><div class="no-content-message" id="noVideosMsg">🎬 Videos coming soon!</div></div></section>
+    <section class="promo-section reveal"><h2 class="section-title">Photo Gallery</h2><div class="promo-grid" id="photoGallery"><div class="no-content-message" id="noPhotosMsg">📸 Photos coming soon!</div></div></section>
 
-    <!-- PHOTO GALLERY SECTION -->
-    <section class="promo-section reveal">
-        <h2 class="section-title">Photo Gallery</h2>
-        <div class="promo-grid" id="photoGallery">
-            <div class="no-content-message" id="noPhotosMsg">
-                <p>📸 Photos will be added soon. Stay tuned!</p>
-            </div>
-        </div>
-    </section>
-
-    <section style="padding: 80px 20px; position: relative;">
-        <h2 style="text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--jkkn-yellow); margin-bottom: 60px; text-shadow: 0 0 20px rgba(255,204,0,0.3);">
-            Event Journey
-        </h2>
-
+    <section class="timeline-section">
+        <h2 class="section-title reveal">Event Journey</h2>
         <div class="timeline-wrapper">
             <div class="timeline-line"></div>
-
-            <div class="timeline-item left reveal">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <span class="status-tag">Upcoming</span>
-                    <div class="event-num">01</div>
-                    <h3>Reception & Guest Arrival</h3>
-                    <p>Welcoming guests to the 56th Annual Day celebration.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item right reveal">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <span class="status-tag">Upcoming</span>
-                    <div class="event-num">02</div>
-                    <h3>Lighting the Kuthu Vilakku</h3>
-                    <p>Ceremonial lighting of the traditional lamp to start the auspicious day.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item left reveal">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <span class="status-tag">Upcoming</span>
-                    <div class="event-num">03</div>
-                    <h3>Honouring the Guests</h3>
-                    <p>Felicitation of Chief Guest and Guest of Honour.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item right reveal">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <span class="status-tag">Upcoming</span>
-                    <div class="event-num">04</div>
-                    <h3>Welcome Address</h3>
-                    <p>Inaugural welcome speech by the school management.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item left reveal">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <span class="status-tag">Upcoming</span>
-                    <div class="event-num">05</div>
-                    <h3>Annual Report Presentation</h3>
-                    <p>Official presentation of the school's achievements and milestones.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item right reveal">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <span class="status-tag">Upcoming</span>
-                    <div class="event-num">06</div>
-                    <h3>Annual Report PPT</h3>
-                    <p>Visual presentation highlighting the year's success stories.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item left reveal">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card highlight-card">
-                    <span class="status-tag">Upcoming</span>
-                    <div class="event-num">07</div>
-                    <h3>Chief Guest Address</h3>
-                    <p>Keynote speech by the inspiring Prof. Dr. Parveen Sultana.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item right reveal">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card highlight-card">
-                    <span class="status-tag">Upcoming</span>
-                    <div class="event-num">08</div>
-                    <h3>Guest of Honour Address</h3>
-                    <p>Address by Mr. R.B. Gogulram, M.E. – Our Proud Alumnus & AI Leader at ZOHO.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item left reveal">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <span class="status-tag">Upcoming</span>
-                    <div class="event-num">09</div>
-                    <h3>Prize Distribution Ceremony</h3>
-                    <p>Awarding ceremony for our outstanding learners and achievers.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item right reveal">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card cultural-card">
-                    <span class="status-tag">Upcoming</span>
-                    <div class="event-num">10</div>
-                    <h3>Cultural Performances</h3>
-                    <p>Short 1-minute cultural shows showcasing student talents.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item left reveal">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <span class="status-tag">Upcoming</span>
-                    <div class="event-num">11</div>
-                    <h3>Choir Performance</h3>
-                    <p>A melodic group choir performance by our learners.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item right reveal">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <span class="status-tag">Upcoming</span>
-                    <div class="event-num">12</div>
-                    <h3>Vote of Thanks</h3>
-                    <p>Closing remarks and expression of gratitude to all contributors.</p>
-                </div>
-            </div>
+            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">01</div><h3>Reception & Guest Arrival</h3><p>Welcome gathering</p></div></div>
+            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">02</div><h3>Lighting the Kuthu Vilakku</h3><p>Traditional lamp lighting</p></div></div>
+            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">03</div><h3>Honouring the Guests</h3><p>Felicitation ceremony</p></div></div>
+            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">04</div><h3>Welcome & Annual Report</h3><p>Year's achievements</p></div></div>
+            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">05</div><h3>Chief Guest Address</h3><p>Prof. Dr. Parveen Sultana</p></div></div>
+            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">06</div><h3>Guest of Honour Address</h3><p>Mr. R.B. Gogulram</p></div></div>
+            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">07</div><h3>Prize Distribution</h3><p>Awarding achievers</p></div></div>
+            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">08</div><h3>Cultural Performances</h3><p>Dance, music & drama</p></div></div>
+            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">09</div><h3>Vote of Thanks</h3><p>Closing remarks</p></div></div>
         </div>
     </section>
 
     <section class="map-section reveal">
-        <h2 style="color: var(--jkkn-yellow); font-family: 'Bebas Neue'; font-size: 3rem;">Find Your Way</h2>
-        <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3910.3705353164477!2d77.70399107505677!3d11.443971988746363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96829dddff877%3A0xb8a823563e20d9fe!2sJKKN%20Matric%20Higher%20Secondary%20School!5e0!3m2!1sen!2sin!4v1703248000000!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
+        <h2 style="color:var(--jkkn-yellow);font-family:'Bebas Neue';font-size:2.2rem;">Find Your Way</h2>
+        <div class="map-container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3910.3705353164477!2d77.70399107505677!3d11.443971988746363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96829dddff877%3A0xb8a823563e20d9fe!2sJKKN%20Matric%20Higher%20Secondary%20School!5e0!3m2!1sen!2sin!4v1703248000000!5m2!1sen!2sin" width="100%" height="350" style="border:0;" allowfullscreen loading="lazy"></iframe></div>
     </section>
 
     <footer class="contact-footer">
         <div class="footer-grid">
-            <div class="footer-info">
-                <h3>Contact Us</h3>
-                <p><strong>JKKN Matriculation Higher Secondary School</strong><br>
-                Salem Main Road, Thiruvalluvar Nagar,<br>
-                Komarapalayam - 638 183,<br>
-                Namakkal District, Tamil Nadu.</p>
-                <p><strong>Phone:</strong> +91 99658 91999<br>
-                <strong>Email:</strong> school@jkkn.ac.in</p>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <a href="#">School Website</a>
-                <a href="#">Annual Report 2025</a>
-                <a href="#">Alumni Portal</a>
-                <a href="#" onclick="openAdminModal(); return false;">🔐 Admin Access</a>
-            </div>
+            <div class="footer-info"><h3>Contact Us</h3><p><strong>JKKN Matriculation Higher Secondary School</strong><br>Salem Main Road, Komarapalayam - 638 183<br>Namakkal District, Tamil Nadu</p><p><strong>📞</strong> +91 99658 91999<br><strong>✉️</strong> school@jkkn.ac.in</p></div>
+            <div class="footer-links"><h3>Quick Links</h3><a href="#">School Website</a><a href="#">Annual Report 2025</a><a href="#">Alumni Portal</a><a href="#" onclick="openAdminModal();return false;">🔐 Admin Access</a></div>
         </div>
-        <div style="text-align: center; margin-top: 50px; opacity: 0.5; font-size: 0.8rem;">
-            © 2026 JKKN Educational Institutions. All Rights Reserved.
-        </div>
+        <div style="text-align:center;margin-top:35px;opacity:0.4;font-size:0.7rem;">© 2026 JKKN Educational Institutions. All Rights Reserved.</div>
     </footer>
 
-    <script>
-        // ========== PARTICLES ==========
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-        let particles = [];
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2; this.speedX = Math.random() * 0.4 - 0.2; this.speedY = Math.random() * 0.4 - 0.2;
-            }
-            update() { this.x += this.speedX; this.y += this.speedY; if(this.x > canvas.width) this.x = 0; if(this.y > canvas.height) this.y = 0; }
-            draw() { ctx.fillStyle = 'rgba(255, 204, 0, 0.3)'; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill(); }
-        }
-        for(let i=0; i<80; i++) particles.push(new Particle());
-        function animate() { ctx.clearRect(0,0,canvas.width, canvas.height); particles.forEach(p => {p.update(); p.draw();}); requestAnimationFrame(animate); }
-        animate();
+    <!-- CHATBOT -->
+    <div class="chatbot-container">
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header"><div class="chat-header-icon">🤖</div><div class="chat-header-info"><h4>JKKN AI Assistant</h4><p>Ask me about Annual Day!</p></div><button class="chat-close" onclick="toggleChat()">×</button></div>
+            <div class="chat-messages" id="chatMessages"><div class="message bot">👋 Hello! I'm your JKKN Annual Day Assistant. Ask me anything about the event!</div></div>
+            <div class="typing-indicator" id="typingIndicator"><span></span><span></span><span></span></div>
+            <div class="quick-replies"><button class="quick-reply" onclick="askQ('When is the event?')">📅 When?</button><button class="quick-reply" onclick="askQ('Who is the chief guest?')">👤 Chief Guest</button><button class="quick-reply" onclick="askQ('What is the schedule?')">📋 Schedule</button><button class="quick-reply" onclick="askQ('Where is the venue?')">📍 Venue</button></div>
+            <div class="chat-input-area"><input type="text" class="chat-input" id="chatInput" placeholder="Type your question..." onkeypress="if(event.key==='Enter')sendMsg()"><button class="chat-send" onclick="sendMsg()">➤</button></div>
+        </div>
+        <div class="chatbot-toggle" onclick="toggleChat()"><div class="bot-face"><div class="bot-antenna"></div><div class="bot-eyes"><div class="bot-eye"></div><div class="bot-eye"></div></div><div class="bot-mouth"></div></div></div>
+    </div>
 
-        // ========== COUNTDOWN ==========
-        const target = new Date("January 6, 2026 09:00:00").getTime();
-        function setRing(id, percent) { document.getElementById(id).style.strokeDashoffset = 283 - (percent * 283); }
-        function updateTimer() {
-            const now = new Date().getTime(); const diff = target - now;
-            const d = Math.floor(diff / (1000*60*60*24)), h = Math.floor((diff % (1000*60*60*24))/(1000*60*60)), m = Math.floor((diff % (1000*60*60))/(1000*60)), s = Math.floor((diff % (1000*60))/1000);
-            document.getElementById('days').innerText = d; document.getElementById('hours').innerText = h; document.getElementById('mins').innerText = m; document.getElementById('secs').innerText = s;
-            setRing('days-ring', Math.min(d/30, 1)); setRing('hours-ring', h/24); setRing('mins-ring', m/60); setRing('secs-ring', s/60);
-        }
-        setInterval(updateTimer, 1000); updateTimer();
+    <!-- MODALS -->
+    <div class="modal-overlay video-modal" id="videoModal"><button class="modal-close" onclick="closeVideoModal()">×</button><video id="modalVideo" controls></video></div>
+    <div class="modal-overlay lightbox" id="lightbox"><button class="modal-close" onclick="closeLightbox()">×</button><button class="nav-btn prev-btn" onclick="navLightbox(-1)">‹</button><img id="lightboxImg" src=""><button class="nav-btn next-btn" onclick="navLightbox(1)">›</button></div>
+    <div class="modal-overlay" id="adminModal"><div class="admin-login-card"><button class="modal-close" onclick="closeAdminModal()" style="position:absolute;top:12px;right:12px;width:32px;height:32px;font-size:1.1rem;">×</button><h2>🔐 Admin Login</h2><div class="login-error" id="loginError">Invalid credentials</div><input type="text" id="adminUsername" placeholder="Username"><input type="password" id="adminPassword" placeholder="Password" onkeypress="if(event.key==='Enter')attemptLogin()"><button onclick="attemptLogin()">Login</button></div></div>
 
-        // ========== REVEAL ON SCROLL ==========
-        window.addEventListener('scroll', () => {
-            document.querySelectorAll('.reveal').forEach(el => { if(el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active'); });
-        });
+<script>
+// Particles
+var canvas = document.getElementById('bg-canvas'), ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+var particles = [];
+function Particle() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*2; this.sx = Math.random()*0.3-0.15; this.sy = Math.random()*0.3-0.15; }
+Particle.prototype.update = function() { this.x += this.sx; this.y += this.sy; if(this.x > canvas.width) this.x = 0; if(this.y > canvas.height) this.y = 0; };
+Particle.prototype.draw = function() { ctx.fillStyle = 'rgba(255,204,0,0.2)'; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill(); };
+for(var i=0; i<50; i++) particles.push(new Particle());
+function animP() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(function(p){p.update();p.draw();}); requestAnimationFrame(animP); }
+animP();
 
-        // ========== TILT CARD ==========
-        const card = document.getElementById('tiltCard');
-        document.addEventListener('mousemove', (e) => {
-            let xAxis = (window.innerWidth/2 - e.pageX)/35; let yAxis = (window.innerHeight/2 - e.pageY)/35;
-            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-        });
+// Countdown
+var target = new Date("January 6, 2026 09:00:00").getTime();
+function setRing(id, pct) { var r = document.getElementById(id); if(r) r.style.strokeDashoffset = 327 - (pct * 327); }
+function updateCD() {
+    var now = Date.now(), diff = target - now;
+    var d = Math.floor(diff/(1000*60*60*24)), h = Math.floor((diff%(1000*60*60*24))/(1000*60*60)), m = Math.floor((diff%(1000*60*60))/(1000*60)), s = Math.floor((diff%(1000*60))/1000);
+    document.getElementById('days').textContent = d<10?'0'+d:d;
+    document.getElementById('hours').textContent = h<10?'0'+h:h;
+    document.getElementById('mins').textContent = m<10?'0'+m:m;
+    document.getElementById('secs').textContent = s<10?'0'+s:s;
+    setRing('days-ring', Math.min(d/365,1)); setRing('hours-ring', h/24); setRing('mins-ring', m/60); setRing('secs-ring', s/60);
+}
+setInterval(updateCD, 1000); updateCD();
 
-        // ========== ADMIN LOGIN SYSTEM ==========
-        const ADMIN_CREDENTIALS = {
-            username: 'jkknadmin',
-            password: 'Annual2026@JKKN'
-        };
+// Reveal
+window.addEventListener('scroll', function() { document.querySelectorAll('.reveal').forEach(function(el) { if(el.getBoundingClientRect().top < window.innerHeight - 60) el.classList.add('active'); }); });
 
-        function openAdminModal() {
-            document.getElementById('adminModal').classList.add('active');
-            document.getElementById('loginError').classList.remove('show');
-            document.getElementById('adminUsername').value = '';
-            document.getElementById('adminPassword').value = '';
-        }
+// AI Chatbot
+var eventInfo = {
+    date: "Tuesday, 6th January 2026",
+    time: "9:00 AM",
+    venue: "JKKN Matriculation Higher Secondary School, Salem Main Road, Komarapalayam - 638 183, Namakkal District",
+    chiefGuest: "Prof. Dr. Parveen Sultana - Tamil Orator & Motivational Speaker, M.A., B.Ed., Ph.D., 25+ years teaching, International speaker, Author of 7 books",
+    guestOfHonour: "Mr. R.B. Gogulram - Manager AI Operations at ZOHO, JKKN Alumnus 1998-2012, Former SPL, NCC C-Certificate holder, B.E., M.E.",
+    schedule: ["1. Reception & Guest Arrival", "2. Lighting the Kuthu Vilakku", "3. Honouring the Guests", "4. Welcome Address & Annual Report", "5. Chief Guest Address", "6. Guest of Honour Address", "7. Prize Distribution", "8. Cultural Performances", "9. Vote of Thanks"],
+    contact: "Phone: +91 99658 91999, Email: school@jkkn.ac.in"
+};
+function getReply(q) {
+    var ql = q.toLowerCase();
+    if(ql.match(/when|date|day/)) return "📅 The 56th Annual Day is on <b>"+eventInfo.date+"</b> at <b>"+eventInfo.time+"</b>. Mark your calendar! 🎉";
+    if(ql.match(/time|timing/)) return "⏰ Event starts at <b>"+eventInfo.time+"</b> on "+eventInfo.date+". Please arrive early!";
+    if(ql.match(/where|venue|location|address|place/)) return "📍 <b>Venue:</b> "+eventInfo.venue+"<br><br>Check the map at the bottom of the page! 🗺️";
+    if(ql.match(/chief guest|chief|parveen|sultana/)) return "👤 <b>Chief Guest:</b> "+eventInfo.chiefGuest;
+    if(ql.match(/guest of honour|honor|honour|gogulram|alumnus|alumni/)) return "🌟 <b>Guest of Honour:</b> "+eventInfo.guestOfHonour;
+    if(ql.match(/guest|who is coming|dignitaries/)) return "🎤 <b>Our Guests:</b><br><br>👤 Chief Guest: Prof. Dr. Parveen Sultana<br>🌟 Guest of Honour: Mr. R.B. Gogulram (Proud Alumnus!)";
+    if(ql.match(/schedule|program|agenda|events|order/)) return "📋 <b>Program Schedule:</b><br><br>"+eventInfo.schedule.join("<br>")+"<br><br>It's going to be amazing! 🎊";
+    if(ql.match(/contact|phone|call|email|reach/)) return "📞 <b>Contact:</b> "+eventInfo.contact;
+    if(ql.match(/school|jkkn|about|history/)) return "🏫 JKKN Matriculation Higher Secondary School, established in 1970, celebrating 56 years of excellence!";
+    if(ql.match(/annual day|celebration|what is/)) return "🎉 The <b>56th Annual Day</b> celebrates 56 years of JKKN's educational excellence with prizes, performances, and guest speeches. Join us on "+eventInfo.date+"!";
+    if(ql.match(/prize|award|distribution/)) return "🏆 The <b>Prize Distribution</b> will honor outstanding learners for their achievements!";
+    if(ql.match(/cultural|dance|music|performance/)) return "💃 <b>Cultural Performances</b> include dance, music, drama & choir by our talented learners! 🎭";
+    if(ql.match(/dress|wear|attire/)) return "👔 Formal or traditional attire recommended for guests. Students will be in costumes.";
+    if(ql.match(/hello|hi|hey|good/)) return "👋 Hello! Welcome! Ask me about the date, venue, guests, schedule, or anything else!";
+    if(ql.match(/thank/)) return "😊 You're welcome! See you at the 56th Annual Day! 🎉";
+    if(ql.match(/help/)) return "🤖 I can help with:<br>• Event date & time<br>• Venue & directions<br>• Guest info<br>• Program schedule<br>• Contact details<br><br>Just ask!";
+    return "🤔 Try asking about: When is the event? Who is the chief guest? What's the schedule? Where is the venue?";
+}
+function toggleChat() { document.getElementById('chatWindow').classList.toggle('active'); }
+function sendMsg() {
+    var input = document.getElementById('chatInput'), msg = input.value.trim();
+    if(!msg) return;
+    addMsg(msg, 'user'); input.value = '';
+    document.getElementById('typingIndicator').classList.add('active');
+    setTimeout(function() { document.getElementById('typingIndicator').classList.remove('active'); addMsg(getReply(msg), 'bot'); }, 600 + Math.random()*400);
+}
+function addMsg(text, type) { var c = document.getElementById('chatMessages'), m = document.createElement('div'); m.className = 'message ' + type; m.innerHTML = text; c.appendChild(m); c.scrollTop = c.scrollHeight; }
+function askQ(q) { document.getElementById('chatInput').value = q; sendMsg(); }
 
-        function closeAdminModal() {
-            document.getElementById('adminModal').classList.remove('active');
-        }
+// Media
+var lbIndex = 0, galleryImgs = [];
+function loadMedia() {
+    var videos = [], photos = [];
+    try { videos = JSON.parse(localStorage.getItem('jkkn_promo_videos')) || []; } catch(e){}
+    try { photos = JSON.parse(localStorage.getItem('jkkn_promo_photos')) || []; } catch(e){}
+    renderVids(videos); renderImgs(photos);
+}
+function renderVids(vids) {
+    var c = document.getElementById('videoGallery'), n = document.getElementById('noVideosMsg');
+    if(!vids.length) { n.style.display = 'block'; return; }
+    n.style.display = 'none'; c.innerHTML = '';
+    vids.forEach(function(v) { var d = document.createElement('div'); d.className = 'promo-card'; d.innerHTML = '<video onclick="openVideoModal(\''+v.url+'\')"><source src="'+v.url+'"></video><div class="promo-info"><h4>'+v.title+'</h4><p>'+(v.description||'Click to play')+'</p></div>'; c.appendChild(d); });
+}
+function renderImgs(imgs) {
+    var c = document.getElementById('photoGallery'), n = document.getElementById('noPhotosMsg');
+    if(!imgs.length) { n.style.display = 'block'; return; }
+    n.style.display = 'none'; c.innerHTML = ''; galleryImgs = imgs.map(function(p){return p.url;});
+    imgs.forEach(function(p, i) { var d = document.createElement('div'); d.className = 'promo-card'; d.innerHTML = '<img src="'+p.url+'" onclick="openLightbox('+i+')"><div class="promo-info"><h4>'+p.title+'</h4><p>'+(p.description||'')+'</p></div>'; c.appendChild(d); });
+}
+function openVideoModal(url) { var m = document.getElementById('videoModal'), v = document.getElementById('modalVideo'); v.src = url; m.classList.add('active'); v.play(); }
+function closeVideoModal() { var m = document.getElementById('videoModal'), v = document.getElementById('modalVideo'); v.pause(); v.src = ''; m.classList.remove('active'); }
+function openLightbox(i) { lbIndex = i; document.getElementById('lightboxImg').src = galleryImgs[i]; document.getElementById('lightbox').classList.add('active'); }
+function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+function navLightbox(d) { lbIndex += d; if(lbIndex < 0) lbIndex = galleryImgs.length - 1; if(lbIndex >= galleryImgs.length) lbIndex = 0; document.getElementById('lightboxImg').src = galleryImgs[lbIndex]; }
 
-        function attemptLogin() {
-            const username = document.getElementById('adminUsername').value;
-            const password = document.getElementById('adminPassword').value;
-            
-            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
-                // Set admin session
-                sessionStorage.setItem('jkkn_admin_session', 'true');
-                sessionStorage.setItem('jkkn_admin_login_time', Date.now());
-                // Redirect to admin panel
-                window.location.href = 'admin.html';
-            } else {
-                document.getElementById('loginError').classList.add('show');
-            }
-        }
+// Admin
+function openAdminModal() { document.getElementById('adminModal').classList.add('active'); document.getElementById('loginError').classList.remove('show'); }
+function closeAdminModal() { document.getElementById('adminModal').classList.remove('active'); }
+function attemptLogin() { var u = document.getElementById('adminUsername').value, p = document.getElementById('adminPassword').value; if(u === 'jkknadmin' && p === 'Annual2026@JKKN') { localStorage.setItem('jkkn_admin_logged', 'yes'); window.location.href = 'admin.html'; } else { document.getElementById('loginError').classList.add('show'); } }
 
-        // Allow Enter key to submit
-        document.getElementById('adminPassword').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') attemptLogin();
-        });
+// Modal closes
+document.getElementById('videoModal').onclick = function(e) { if(e.target === this) closeVideoModal(); };
+document.getElementById('lightbox').onclick = function(e) { if(e.target === this) closeLightbox(); };
+document.getElementById('adminModal').onclick = function(e) { if(e.target === this) closeAdminModal(); };
+document.onkeydown = function(e) { if(document.getElementById('lightbox').classList.contains('active')) { if(e.key === 'ArrowLeft') navLightbox(-1); if(e.key === 'ArrowRight') navLightbox(1); } if(e.key === 'Escape') { closeVideoModal(); closeLightbox(); closeAdminModal(); } };
 
-        // ========== MEDIA GALLERY SYSTEM ==========
-        let currentLightboxIndex = 0;
-        let galleryImages = [];
-
-        // Load media from localStorage
-        function loadMedia() {
-            const videos = JSON.parse(localStorage.getItem('jkkn_promo_videos') || '[]');
-            const photos = JSON.parse(localStorage.getItem('jkkn_promo_photos') || '[]');
-            
-            renderVideos(videos);
-            renderPhotos(photos);
-        }
-
-        function renderVideos(videos) {
-            const container = document.getElementById('videoGallery');
-            const noMsg = document.getElementById('noVideosMsg');
-            
-            if (videos.length === 0) {
-                noMsg.style.display = 'block';
-                return;
-            }
-            
-            noMsg.style.display = 'none';
-            container.innerHTML = '';
-            
-            videos.forEach((video, index) => {
-                const card = document.createElement('div');
-                card.className = 'promo-card';
-                card.innerHTML = `
-                    <video onclick="openVideoModal('${video.url}')" style="cursor: pointer;">
-                        <source src="${video.url}" type="video/mp4">
-                    </video>
-                    <div class="promo-info">
-                        <h4>${video.title}</h4>
-                        <p>${video.description || 'Click to play'}</p>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        function renderPhotos(photos) {
-            const container = document.getElementById('photoGallery');
-            const noMsg = document.getElementById('noPhotosMsg');
-            
-            if (photos.length === 0) {
-                noMsg.style.display = 'block';
-                return;
-            }
-            
-            noMsg.style.display = 'none';
-            container.innerHTML = '';
-            galleryImages = photos.map(p => p.url);
-            
-            photos.forEach((photo, index) => {
-                const card = document.createElement('div');
-                card.className = 'promo-card';
-                card.innerHTML = `
-                    <img src="${photo.url}" alt="${photo.title}" onclick="openLightbox(${index})" style="cursor: pointer;">
-                    <div class="promo-info">
-                        <h4>${photo.title}</h4>
-                        <p>${photo.description || ''}</p>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        // Video Modal
-        function openVideoModal(url) {
-            const modal = document.getElementById('videoModal');
-            const video = document.getElementById('modalVideo');
-            video.src = url;
-            modal.classList.add('active');
-            video.play();
-        }
-
-        function closeVideoModal() {
-            const modal = document.getElementById('videoModal');
-            const video = document.getElementById('modalVideo');
-            video.pause();
-            video.src = '';
-            modal.classList.remove('active');
-        }
-
-        // Photo Lightbox
-        function openLightbox(index) {
-            currentLightboxIndex = index;
-            document.getElementById('lightboxImg').src = galleryImages[index];
-            document.getElementById('lightbox').classList.add('active');
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-        }
-
-        function navigateLightbox(direction) {
-            currentLightboxIndex += direction;
-            if (currentLightboxIndex < 0) currentLightboxIndex = galleryImages.length - 1;
-            if (currentLightboxIndex >= galleryImages.length) currentLightboxIndex = 0;
-            document.getElementById('lightboxImg').src = galleryImages[currentLightboxIndex];
-        }
-
-        // Close modals on backdrop click
-        document.getElementById('videoModal').addEventListener('click', function(e) {
-            if (e.target === this) closeVideoModal();
-        });
-        document.getElementById('lightbox').addEventListener('click', function(e) {
-            if (e.target === this) closeLightbox();
-        });
-        document.getElementById('adminModal').addEventListener('click', function(e) {
-            if (e.target === this) closeAdminModal();
-        });
-
-        // Keyboard navigation for lightbox
-        document.addEventListener('keydown', function(e) {
-            if (document.getElementById('lightbox').classList.contains('active')) {
-                if (e.key === 'ArrowLeft') navigateLightbox(-1);
-                if (e.key === 'ArrowRight') navigateLightbox(1);
-                if (e.key === 'Escape') closeLightbox();
-            }
-            if (document.getElementById('videoModal').classList.contains('active')) {
-                if (e.key === 'Escape') closeVideoModal();
-            }
-            if (document.getElementById('adminModal').classList.contains('active')) {
-                if (e.key === 'Escape') closeAdminModal();
-            }
-        });
-
-        // Load media on page load
-        loadMedia();
-
-        // ========== AI ROBOT LOGIC ==========
-        const robot = document.getElementById('aiRobot');
-        const speech = document.getElementById('robotSpeech');
-        const wheel1 = document.getElementById('wheel1');
-        const wheel2 = document.getElementById('wheel2');
-        
-        const robotMessages = [
-            "🎉 Welcome to 56th Annual Day!", "📅 Jan 6th, 2026 - Save the Date!", "🌟 56 Years of Excellence!",
-            "👋 Hello from JKKN!", "✨ Making Memories!", "🎊 Join the Celebration!", "💚 JKKN Pride!"
-        ];
-
-        let curX = window.innerWidth - 120, curY = 120;
-        let tarX = curX, tarY = curY;
-        let isDragging = false, isAutoMoving = true, messageIndex = 0;
-        let moveStartTime = Date.now();
-
-        function startDrag(e) {
-            isDragging = true; 
-            isAutoMoving = false;
-            robot.style.transition = 'none';
-            wheel1.classList.remove('moving'); wheel2.classList.remove('moving');
-
-            const touch = e.type === 'touchstart' ? e.touches[0] : e;
-            robot.startX = touch.clientX - robot.offsetLeft;
-            robot.startY = touch.clientY - robot.offsetTop;
-        }
-
-        function moveDrag(e) {
-            if (!isDragging) return;
-            e.preventDefault();
-            
-            const touch = e.type === 'touchmove' ? e.touches[0] : e;
-            curX = touch.clientX - robot.startX;
-            curY = touch.clientY - robot.startY;
-            
-            robot.style.left = curX + 'px';
-            robot.style.top = curY + 'px';
-        }
-
-        function endDrag() {
-            if (isDragging) {
-                isDragging = false;
-                robot.style.transition = 'left 0.3s ease-out, top 0.3s ease-out';
-                robotClick();
-            }
-        }
-
-        robot.addEventListener('mousedown', startDrag);
-        robot.addEventListener('touchstart', startDrag, { passive: false });
-        window.addEventListener('mousemove', moveDrag);
-        window.addEventListener('touchmove', moveDrag, { passive: false });
-        window.addEventListener('mouseup', endDrag);
-        window.addEventListener('touchend', endDrag);
-
-        function robotClick() {
-            messageIndex = (messageIndex + 1) % robotMessages.length;
-            speech.innerHTML = robotMessages[messageIndex];
-            speech.classList.add('visible');
-            setTimeout(() => speech.classList.remove('visible'), 3000);
-        }
-
-        function updateAutoPatrol() {
-            if (isAutoMoving && !isDragging) {
-                if (Date.now() - moveStartTime >= 10000) {
-                    isAutoMoving = false; 
-                    wheel1.classList.remove('moving'); wheel2.classList.remove('moving');
-                    return; 
-                }
-                
-                wheel1.classList.add('moving'); wheel2.classList.add('moving');
-                if (Math.abs(curX - tarX) < 15) {
-                    tarX = 50 + Math.random() * (window.innerWidth - 150);
-                    tarY = 50 + Math.random() * (window.innerHeight - 150);
-                }
-                curX += (tarX - curX) * 0.02;
-                curY += (tarY - curY) * 0.02;
-                robot.style.left = curX + 'px';
-                robot.style.top = curY + 'px';
-            }
-            requestAnimationFrame(updateAutoPatrol);
-        }
-
-        robot.style.left = curX + 'px';
-        robot.style.top = curY + 'px';
-        updateAutoPatrol();
-    </script>
+loadMedia();
+</script>
 </body>
 </html>

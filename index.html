@@ -12,7 +12,7 @@
         #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at center, #0e3a1f, #020d07); }
         
         .nav-bar { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 10px 40px; z-index: 2000; background: rgba(10,77,40,0.9); backdrop-filter: blur(20px); border-bottom: 3px solid var(--jkkn-yellow); }
-        .nav-bar img { height: 55px; width: 55px; border-radius: 50%; background: white; padding: 4px; border: 2px solid var(--jkkn-yellow); }
+        .nav-bar img { height: 55px; width: 70px; border-radius: 8px; background: white; padding: 4px; border: 2px solid var(--jkkn-yellow); object-fit: contain; }
         .nav-bar h1 { font-family: 'Bebas Neue', sans-serif; color: var(--jkkn-yellow); font-size: clamp(0.8rem, 3.5vw, 1.6rem); text-align: center; flex-grow: 1; }
 
         .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 20px 60px; }
@@ -38,16 +38,16 @@
         .highlight-date { display: inline-block; margin: 18px 0; padding: 12px 25px; background: var(--jkkn-green); color: var(--jkkn-yellow); font-weight: 900; transform: skew(-10deg); font-size: 1.3rem; }
 
         .section-title { text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--jkkn-yellow); margin: 50px 0 35px; }
-        .guest-grid { display: flex; justify-content: center; gap: 35px; flex-wrap: wrap; max-width: 1000px; margin: auto; padding: 0 20px; }
-        .guest-card { width: 340px; background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); border-radius: 25px; padding: 28px 22px; text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; position: relative; }
+        .guest-grid { display: flex; justify-content: center; gap: 35px; flex-wrap: wrap; max-width: 1400px; margin: auto; padding: 0 20px; }
+        .guest-card { width: 300px; background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); border-radius: 25px; padding: 28px 22px; text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; position: relative; }
         .guest-card:hover { transform: translateY(-8px); border-color: var(--jkkn-yellow); }
         .guest-photo-wrap { width: 120px; height: 120px; margin: 0 auto 15px; border-radius: 50%; padding: 4px; background: var(--gold-gradient); }
         .guest-photo { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid #051a0f; }
         .guest-role { display: inline-block; background: var(--jkkn-green); color: var(--jkkn-yellow); padding: 4px 14px; border-radius: 18px; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; margin-bottom: 8px; }
-        .guest-card h3 { font-size: 1.4rem; margin-bottom: 4px; }
-        .guest-card .designation { opacity: 0.7; font-size: 0.78rem; margin-bottom: 12px; line-height: 1.5; }
+        .guest-card h3 { font-size: 1.3rem; margin-bottom: 4px; }
+        .guest-card .designation { opacity: 0.7; font-size: 0.75rem; margin-bottom: 12px; line-height: 1.5; }
         .guest-highlights { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; }
-        .highlight-tag { background: rgba(255,204,0,0.15); color: var(--jkkn-yellow); padding: 4px 10px; border-radius: 15px; font-size: 0.62rem; font-weight: 600; border: 1px solid rgba(255,204,0,0.3); }
+        .highlight-tag { background: rgba(255,204,0,0.15); color: var(--jkkn-yellow); padding: 4px 10px; border-radius: 15px; font-size: 0.6rem; font-weight: 600; border: 1px solid rgba(255,204,0,0.3); }
         .alumni-badge { position: absolute; top: 12px; right: 12px; background: var(--jkkn-yellow); color: var(--jkkn-green); padding: 4px 10px; border-radius: 12px; font-size: 0.55rem; font-weight: 800; }
 
         .promo-section { padding: 50px 20px; max-width: 1300px; margin: 0 auto; }
@@ -148,7 +148,7 @@
 
         @media (max-width: 768px) {
             .nav-bar { padding: 8px 15px; }
-            .nav-bar img { height: 45px; width: 45px; }
+            .nav-bar img { height: 45px; width: 60px; }
             .countdown-container { gap: 15px; }
             .countdown-unit { width: 100px; height: 120px; }
             .countdown-number { font-size: 3rem; }
@@ -190,7 +190,7 @@
                     <div class="countdown-unit"><svg viewBox="0 0 120 120"><circle class="circle-bg" cx="60" cy="60" r="52"/><circle id="mins-ring" class="circle-progress" cx="60" cy="60" r="52"/></svg><span class="countdown-number" id="mins">00</span><span class="countdown-label">Minutes</span></div>
                     <div class="countdown-unit"><svg viewBox="0 0 120 120"><circle class="circle-bg" cx="60" cy="60" r="52"/><circle id="secs-ring" class="circle-progress" cx="60" cy="60" r="52"/></svg><span class="countdown-number" id="secs">00</span><span class="countdown-label">Seconds</span></div>
                 </div>
-                <div class="event-date-banner">📅 TUESDAY, 6TH JANUARY 2026 | 9:00 AM</div>
+                <div class="event-date-banner">📅 TUESDAY, 6TH JANUARY 2026 | 10:00 AM</div>
             </div>
         </div>
     </header>
@@ -198,27 +198,48 @@
     <section class="invitation-wrap">
         <div class="invite-card reveal">
             <div class="script-font">Cordially Invites You</div>
-            <div style="color:#333;line-height:1.7;">The Management, Principal & Learners of<br><strong style="color:var(--jkkn-green);font-size:1.1rem;">JKKN MATRICULATION HIGHER SECONDARY SCHOOL</strong><br>request the pleasure of your presence at our<div style="font-weight:900;font-size:1.8rem;margin:12px 0;color:#000;font-family:'Cinzel';">56th Annual Day Celebration</div><div class="highlight-date">Tuesday, 06th January 2026</div><br><span style="font-size:1rem;font-weight:600;">at 9:00 AM in the School Premises</span></div>
+            <div style="color:#333;line-height:1.7;">The Management, Principal & Learners of<br><strong style="color:var(--jkkn-green);font-size:1.1rem;">JKKN MATRICULATION HIGHER SECONDARY SCHOOL</strong><br>request the pleasure of your presence at our<div style="font-weight:900;font-size:1.8rem;margin:12px 0;color:#000;font-family:'Cinzel';">56th Annual Day Celebration</div><div class="highlight-date">Tuesday, 06th January 2026</div><br><span style="font-size:1rem;font-weight:600;">at 10:00 AM in the School Premises</span></div>
         </div>
     </section>
 
     <section>
         <h2 class="section-title reveal">Dignitaries of the Day</h2>
         <div class="guest-grid">
+            <!-- Chairperson - Preside Over the Function -->
+            <div class="guest-card reveal">
+                <div class="guest-photo-wrap"><img src="chairperson.jpg" alt="Smt. N. Sendamaraai" class="guest-photo"></div>
+                <span class="guest-role">PRESIDE OVER THE FUNCTION</span>
+                <h3>Smt. N. Sendamaraai</h3>
+                <p class="designation">Chairperson<br>JKKN Educational Institutions<br>Kumarapalayam</p>
+                <div class="guest-highlights"><span class="highlight-tag">Visionary Leader</span><span class="highlight-tag">Education Pioneer</span><span class="highlight-tag">Community Builder</span></div>
+            </div>
+            
+            <!-- Managing Director - Felicitation -->
+            <div class="guest-card reveal">
+                <div class="guest-photo-wrap"><img src="md.jpg" alt="Shri. S. Ommsharravana" class="guest-photo"></div>
+                <span class="guest-role">FELICITATION THE GATHERING</span>
+                <h3>Shri. S. Ommsharravana</h3>
+                <p class="designation">Managing Director<br>JKKN Educational Institutions<br>Kumarapalayam</p>
+                <div class="guest-highlights"><span class="highlight-tag">Strategic Leader</span><span class="highlight-tag">Innovation Champion</span><span class="highlight-tag">Institution Builder</span></div>
+            </div>
+            
+            <!-- Chief Guest -->
             <div class="guest-card reveal">
                 <div class="guest-photo-wrap"><img src="parween sultan.jpg" alt="Dr. Parveen Sultana" class="guest-photo"></div>
                 <span class="guest-role">CHIEF GUEST</span>
-                <h3>Prof. Dr. Parveen Sultana</h3>
+                <h3>Dr. Parveen Sultana</h3>
                 <p class="designation">Tamil Orator & Motivational Speaker<br>M.A., B.Ed., Ph.D.</p>
                 <div class="guest-highlights"><span class="highlight-tag">25+ Years Teaching</span><span class="highlight-tag">International Speaker</span><span class="highlight-tag">7 Research Books</span><span class="highlight-tag">TV Commentator</span></div>
             </div>
+            
+            <!-- Guest of Honour -->
             <div class="guest-card reveal">
                 <span class="alumni-badge">⭐ PROUD ALUMNUS</span>
-                <div class="guest-photo-wrap"><img src="Guest of Honor -Mr Gogulram RB.jpeg" alt="Mr. R.B. Gogulram" class="guest-photo"></div>
+                <div class="guest-photo-wrap"><img src="Guest of Honor -Mr Gogulram RB.jpeg" alt="Er. R.B. Gogulram" class="guest-photo"></div>
                 <span class="guest-role">GUEST OF HONOUR</span>
-                <h3>Mr. R.B. Gogulram</h3>
-                <p class="designation">Manager – AI Operations, ZOHO Corp<br>B.E., M.E. (Embedded Systems & AI)</p>
-                <div class="guest-highlights"><span class="highlight-tag">JKKN 1998-2012</span><span class="highlight-tag">SPL 2012</span><span class="highlight-tag">ZOHO AI Lead</span><span class="highlight-tag">NCC C-Cert</span></div>
+                <h3>Er. R.B. Gogulram M.E.</h3>
+                <p class="designation">Manager – AI Operations<br>ZOHO Corporations, Chennai<br>(Alumnus 2011-12 Batch)</p>
+                <div class="guest-highlights"><span class="highlight-tag">JKKN Alumnus</span><span class="highlight-tag">ZOHO AI Lead</span><span class="highlight-tag">Tech Innovator</span><span class="highlight-tag">NCC C-Cert</span></div>
             </div>
         </div>
     </section>
@@ -227,18 +248,24 @@
     <section class="promo-section reveal"><h2 class="section-title">Photo Gallery</h2><div class="promo-grid" id="photoGallery"><div class="no-content-message" id="noPhotosMsg">📸 Photos coming soon!</div></div></section>
 
     <section class="timeline-section">
-        <h2 class="section-title reveal">Event Journey</h2>
+        <h2 class="section-title reveal">Event Programme</h2>
         <div class="timeline-wrapper">
             <div class="timeline-line"></div>
-            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">01</div><h3>Reception & Guest Arrival</h3><p>Welcome gathering</p></div></div>
-            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">02</div><h3>Lighting the Kuthu Vilakku</h3><p>Traditional lamp lighting</p></div></div>
-            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">03</div><h3>Honouring the Guests</h3><p>Felicitation ceremony</p></div></div>
-            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">04</div><h3>Welcome & Annual Report</h3><p>Year's achievements</p></div></div>
-            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">05</div><h3>Chief Guest Address</h3><p>Prof. Dr. Parveen Sultana</p></div></div>
-            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">06</div><h3>Guest of Honour Address</h3><p>Mr. R.B. Gogulram</p></div></div>
-            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">07</div><h3>Prize Distribution</h3><p>Awarding achievers</p></div></div>
-            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">08</div><h3>Cultural Performances</h3><p>Dance, music & drama</p></div></div>
-            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">09</div><h3>Vote of Thanks</h3><p>Closing remarks</p></div></div>
+            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">01</div><h3>Prayer Song</h3><p>Divine invocation</p></div></div>
+            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">02</div><h3>Welcome Dance</h3><p>Traditional welcome performance</p></div></div>
+            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">03</div><h3>Lighting Kuthuvilaku</h3><p>Traditional lamp lighting ceremony</p></div></div>
+            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">04</div><h3>Welcome Address</h3><p>Greeting the gathering</p></div></div>
+            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">05</div><h3>Garlanding</h3><p>Honouring the guests</p></div></div>
+            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">06</div><h3>Annual Report Presentation</h3><p>Year's achievements & milestones</p></div></div>
+            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">07</div><h3>Presidential Address</h3><p>Smt. N. Sendamaraai</p></div></div>
+            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">08</div><h3>Felicitation Address</h3><p>Shri. S. Ommsharravana</p></div></div>
+            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">09</div><h3>Guest of Honour Address</h3><p>Er. R.B. Gogulram M.E.</p></div></div>
+            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">10</div><h3>Chief Guest Address</h3><p>Dr. Parveen Sultana</p></div></div>
+            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">11</div><h3>Prize Distribution</h3><p>Awarding achievers</p></div></div>
+            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">12</div><h3>Lunch Break</h3><p>Refreshments for all</p></div></div>
+            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">13</div><h3>Cultural Programme</h3><p>Dance, music & drama performances</p></div></div>
+            <div class="timeline-item right reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">14</div><h3>Vote of Thanks</h3><p>Gratitude & acknowledgments</p></div></div>
+            <div class="timeline-item left reveal"><div class="timeline-dot"></div><div class="timeline-card"><div class="event-num">15</div><h3>National Anthem</h3><p>Closing ceremony</p></div></div>
         </div>
     </section>
 
@@ -261,7 +288,7 @@
             <div class="chat-header"><div class="chat-header-icon">🤖</div><div class="chat-header-info"><h4>JKKN AI Assistant</h4><p>Ask me about Annual Day!</p></div><button class="chat-close" onclick="toggleChat()">×</button></div>
             <div class="chat-messages" id="chatMessages"><div class="message bot">👋 Hello! I'm your JKKN Annual Day Assistant. Ask me anything about the event!</div></div>
             <div class="typing-indicator" id="typingIndicator"><span></span><span></span><span></span></div>
-            <div class="quick-replies"><button class="quick-reply" onclick="askQ('When is the event?')">📅 When?</button><button class="quick-reply" onclick="askQ('Who is the chief guest?')">👤 Chief Guest</button><button class="quick-reply" onclick="askQ('What is the schedule?')">📋 Schedule</button><button class="quick-reply" onclick="askQ('Where is the venue?')">📍 Venue</button></div>
+            <div class="quick-replies"><button class="quick-reply" onclick="askQ('When is the event?')">📅 When?</button><button class="quick-reply" onclick="askQ('Where is the venue?')">📍 Venue</button><button class="quick-reply" onclick="askQ('Who are the guests?')">👤 Guests</button><button class="quick-reply" onclick="askQ('Tell me about the school')">🏫 School</button><button class="quick-reply" onclick="askQ('What is the schedule?')">📋 Schedule</button><button class="quick-reply" onclick="askQ('Tell me about AI in JKKN')">🤖 AI School</button></div>
             <div class="chat-input-area"><input type="text" class="chat-input" id="chatInput" placeholder="Type your question..." onkeypress="if(event.key==='Enter')sendMsg()"><button class="chat-send" onclick="sendMsg()">➤</button></div>
         </div>
         <div class="chatbot-toggle" onclick="toggleChat()"><div class="bot-face"><div class="bot-antenna"></div><div class="bot-eyes"><div class="bot-eye"></div><div class="bot-eye"></div></div><div class="bot-mouth"></div></div></div>
@@ -285,7 +312,7 @@ function animP() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forE
 animP();
 
 // Countdown
-var target = new Date("January 6, 2026 09:00:00").getTime();
+var target = new Date("January 6, 2026 10:00:00").getTime();
 function setRing(id, pct) { var r = document.getElementById(id); if(r) r.style.strokeDashoffset = 327 - (pct * 327); }
 function updateCD() {
     var now = Date.now(), diff = target - now;
@@ -304,32 +331,318 @@ window.addEventListener('scroll', function() { document.querySelectorAll('.revea
 // AI Chatbot
 var eventInfo = {
     date: "Tuesday, 6th January 2026",
-    time: "9:00 AM",
-    venue: "JKKN Matriculation Higher Secondary School, Salem Main Road, Komarapalayam - 638 183, Namakkal District",
-    chiefGuest: "Prof. Dr. Parveen Sultana - Tamil Orator & Motivational Speaker, M.A., B.Ed., Ph.D., 25+ years teaching, International speaker, Author of 7 books",
-    guestOfHonour: "Mr. R.B. Gogulram - Manager AI Operations at ZOHO, JKKN Alumnus 1998-2012, Former SPL, NCC C-Certificate holder, B.E., M.E.",
-    schedule: ["1. Reception & Guest Arrival", "2. Lighting the Kuthu Vilakku", "3. Honouring the Guests", "4. Welcome Address & Annual Report", "5. Chief Guest Address", "6. Guest of Honour Address", "7. Prize Distribution", "8. Cultural Performances", "9. Vote of Thanks"],
-    contact: "Phone: +91 99658 91999, Email: school@jkkn.ac.in"
+    time: "10:00 AM",
+    venue: {
+        name: "JKKN Matriculation Higher Secondary School",
+        address: "Salem Main Road, Komarapalayam - 638 183, Namakkal District, Tamil Nadu, India",
+        landmarks: "Near Komarapalayam Bus Stand, opposite to JKKN College of Engineering",
+        parking: "Ample parking space available inside the campus",
+        directions: "From Salem: 45 km via NH44. From Erode: 25 km via Bhavani Road. From Namakkal: 30 km via State Highway.",
+        coordinates: "11.4440° N, 77.7040° E"
+    },
+    chairperson: {
+        name: "Smt. N. Sendamaraai",
+        role: "Chairperson, JKKN Educational Institutions",
+        location: "Kumarapalayam",
+        function: "Will preside over the function",
+        about: "A visionary leader and education pioneer who has been instrumental in shaping JKKN Educational Institutions into a premier educational hub. Under her guidance, JKKN has grown to include 7 colleges serving 5000+ Learners. She is known for her commitment to accessible, quality education and community development."
+    },
+    managingDirector: {
+        name: "Shri. S. Ommsharravana",
+        role: "Managing Director, JKKN Educational Institutions",
+        location: "Kumarapalayam",
+        function: "Will felicitate the gathering",
+        about: "A dynamic leader driving innovation and excellence across JKKN institutions. He spearheads digital transformation initiatives, including making JKKN India's First AI Empowered School. His strategic vision focuses on blending tradition with technology to prepare Learners for the future."
+    },
+    chiefGuest: {
+        name: "Dr. Parveen Sultana",
+        role: "Chief Guest",
+        designation: "Tamil Orator & Motivational Speaker",
+        qualifications: "M.A., B.Ed., Ph.D.",
+        achievements: [
+            "25+ years of teaching experience",
+            "Renowned International Speaker",
+            "Author of 7 Research Books",
+            "Popular TV Commentator",
+            "Inspired millions through motivational talks",
+            "Expert in Tamil literature and oratory"
+        ]
+    },
+    guestOfHonour: {
+        name: "Er. R.B. Gogulram M.E.",
+        role: "Guest of Honour",
+        designation: "Manager - AI Operations, ZOHO Corporations, Chennai",
+        qualifications: "B.E., M.E. (Embedded Systems & AI)",
+        alumnus: "JKKN Alumnus 2011-12 Batch",
+        achievements: [
+            "Proud JKKN Alumni (1998-2012)",
+            "Former School Pupil Leader (SPL) 2012",
+            "NCC C-Certificate Holder",
+            "Leading AI initiatives at ZOHO",
+            "Expert in Machine Learning & AI Operations",
+            "Inspiring success story from JKKN"
+        ]
+    },
+    schoolFeatures: {
+        established: "1970 (56 years of excellence)",
+        recognition: "India's First AI Empowered School",
+        certifications: ["Child Safe School Certified", "AI Empowered School"],
+        infrastructure: [
+            "Smart Classrooms with Digital Boards",
+            "Well-equipped Science & Computer Labs",
+            "Library with 10,000+ books",
+            "Spacious Playground & Sports Facilities",
+            "Auditorium with 2000+ seating capacity",
+            "Transportation facilities covering 50+ routes"
+        ],
+        academics: [
+            "State Board & Matriculation Curriculum",
+            "AI & Robotics Integration in Learning",
+            "Special coaching for competitive exams",
+            "Language labs for English proficiency",
+            "Regular workshops and seminars"
+        ],
+        activities: [
+            "NCC (National Cadet Corps)",
+            "Scouts & Guides",
+            "Sports: Cricket, Football, Athletics, Kabaddi",
+            "Cultural: Dance, Music, Drama, Art",
+            "Clubs: Science, Math, Literary, Eco Club"
+        ],
+        achievements: [
+            "100% pass percentage in board exams",
+            "State & National level winners in academics",
+            "Sports champions at district & state level",
+            "Alumni in top companies like ZOHO, TCS, Infosys"
+        ]
+    },
+    schedule: ["1. Prayer Song", "2. Welcome Dance", "3. Lighting Kuthuvilaku", "4. Welcome Address", "5. Garlanding", "6. Annual Report Presentation", "7. Presidential Address", "8. Felicitation Address", "9. Guest of Honour Address", "10. Chief Guest Address", "11. Prize Distribution", "12. Lunch Break", "13. Cultural Programme", "14. Vote of Thanks", "15. National Anthem"],
+    contact: {
+        phone: "+91 99658 91999",
+        email: "school@jkkn.ac.in",
+        website: "www.jkkn.ac.in"
+    }
 };
+
 function getReply(q) {
     var ql = q.toLowerCase();
+    
+    // Date & Time
     if(ql.match(/when|date|day/)) return "📅 The 56th Annual Day is on <b>"+eventInfo.date+"</b> at <b>"+eventInfo.time+"</b>. Mark your calendar! 🎉";
-    if(ql.match(/time|timing/)) return "⏰ Event starts at <b>"+eventInfo.time+"</b> on "+eventInfo.date+". Please arrive early!";
-    if(ql.match(/where|venue|location|address|place/)) return "📍 <b>Venue:</b> "+eventInfo.venue+"<br><br>Check the map at the bottom of the page! 🗺️";
-    if(ql.match(/chief guest|chief|parveen|sultana/)) return "👤 <b>Chief Guest:</b> "+eventInfo.chiefGuest;
-    if(ql.match(/guest of honour|honor|honour|gogulram|alumnus|alumni/)) return "🌟 <b>Guest of Honour:</b> "+eventInfo.guestOfHonour;
-    if(ql.match(/guest|who is coming|dignitaries/)) return "🎤 <b>Our Guests:</b><br><br>👤 Chief Guest: Prof. Dr. Parveen Sultana<br>🌟 Guest of Honour: Mr. R.B. Gogulram (Proud Alumnus!)";
-    if(ql.match(/schedule|program|agenda|events|order/)) return "📋 <b>Program Schedule:</b><br><br>"+eventInfo.schedule.join("<br>")+"<br><br>It's going to be amazing! 🎊";
-    if(ql.match(/contact|phone|call|email|reach/)) return "📞 <b>Contact:</b> "+eventInfo.contact;
-    if(ql.match(/school|jkkn|about|history/)) return "🏫 JKKN Matriculation Higher Secondary School, established in 1970, celebrating 56 years of excellence!";
-    if(ql.match(/annual day|celebration|what is/)) return "🎉 The <b>56th Annual Day</b> celebrates 56 years of JKKN's educational excellence with prizes, performances, and guest speeches. Join us on "+eventInfo.date+"!";
-    if(ql.match(/prize|award|distribution/)) return "🏆 The <b>Prize Distribution</b> will honor outstanding learners for their achievements!";
-    if(ql.match(/cultural|dance|music|performance/)) return "💃 <b>Cultural Performances</b> include dance, music, drama & choir by our talented learners! 🎭";
-    if(ql.match(/dress|wear|attire/)) return "👔 Formal or traditional attire recommended for guests. Students will be in costumes.";
-    if(ql.match(/hello|hi|hey|good/)) return "👋 Hello! Welcome! Ask me about the date, venue, guests, schedule, or anything else!";
-    if(ql.match(/thank/)) return "😊 You're welcome! See you at the 56th Annual Day! 🎉";
-    if(ql.match(/help/)) return "🤖 I can help with:<br>• Event date & time<br>• Venue & directions<br>• Guest info<br>• Program schedule<br>• Contact details<br><br>Just ask!";
-    return "🤔 Try asking about: When is the event? Who is the chief guest? What's the schedule? Where is the venue?";
+    if(ql.match(/time|timing|start/)) return "⏰ Event starts at <b>"+eventInfo.time+"</b> on "+eventInfo.date+". Please arrive 30 minutes early for seating!";
+    
+    // Venue & Location Details
+    if(ql.match(/where|venue|location|address|place|direction|how to reach|route|map/)) {
+        return "📍 <b>Venue Details:</b><br><br>"+
+            "🏫 <b>"+eventInfo.venue.name+"</b><br>"+
+            "📮 "+eventInfo.venue.address+"<br><br>"+
+            "🗺️ <b>Landmarks:</b> "+eventInfo.venue.landmarks+"<br><br>"+
+            "🚗 <b>Directions:</b><br>"+eventInfo.venue.directions+"<br><br>"+
+            "🅿️ <b>Parking:</b> "+eventInfo.venue.parking+"<br><br>"+
+            "Check the interactive map at the bottom of the page! 🗺️";
+    }
+    
+    // Chairperson Details
+    if(ql.match(/chairperson|sendamaraai|preside|president/)) {
+        return "👑 <b>Presiding Over the Function:</b><br><br>"+
+            "👤 <b>"+eventInfo.chairperson.name+"</b><br>"+
+            "🏛️ "+eventInfo.chairperson.role+"<br>"+
+            "📍 "+eventInfo.chairperson.location+"<br><br>"+
+            "📝 <b>About:</b> "+eventInfo.chairperson.about;
+    }
+    
+    // Managing Director Details
+    if(ql.match(/managing director|md|ommsharravana|felicit/)) {
+        return "🏛️ <b>Felicitating the Gathering:</b><br><br>"+
+            "👤 <b>"+eventInfo.managingDirector.name+"</b><br>"+
+            "💼 "+eventInfo.managingDirector.role+"<br>"+
+            "📍 "+eventInfo.managingDirector.location+"<br><br>"+
+            "📝 <b>About:</b> "+eventInfo.managingDirector.about;
+    }
+    
+    // Chief Guest Details
+    if(ql.match(/chief guest|parveen|sultana/)) {
+        return "👤 <b>Chief Guest:</b><br><br>"+
+            "🎤 <b>"+eventInfo.chiefGuest.name+"</b><br>"+
+            "💼 "+eventInfo.chiefGuest.designation+"<br>"+
+            "🎓 "+eventInfo.chiefGuest.qualifications+"<br><br>"+
+            "🏆 <b>Achievements:</b><br>• "+eventInfo.chiefGuest.achievements.join("<br>• ");
+    }
+    
+    // Guest of Honour Details
+    if(ql.match(/guest of honour|honor|honour|gogulram|alumnus|alumni|zoho/)) {
+        return "🌟 <b>Guest of Honour:</b><br><br>"+
+            "👤 <b>"+eventInfo.guestOfHonour.name+"</b><br>"+
+            "💼 "+eventInfo.guestOfHonour.designation+"<br>"+
+            "🎓 "+eventInfo.guestOfHonour.qualifications+"<br>"+
+            "🏫 "+eventInfo.guestOfHonour.alumnus+"<br><br>"+
+            "🏆 <b>Achievements:</b><br>• "+eventInfo.guestOfHonour.achievements.join("<br>• ");
+    }
+    
+    // All Guests Overview
+    if(ql.match(/guest|who is coming|dignitaries|all guest|speaker/)) {
+        return "🎤 <b>Distinguished Dignitaries:</b><br><br>"+
+            "👑 <b>Presiding:</b> "+eventInfo.chairperson.name+"<br>("+eventInfo.chairperson.role+")<br><br>"+
+            "🏛️ <b>Felicitation:</b> "+eventInfo.managingDirector.name+"<br>("+eventInfo.managingDirector.role+")<br><br>"+
+            "👤 <b>Chief Guest:</b> "+eventInfo.chiefGuest.name+"<br>("+eventInfo.chiefGuest.designation+")<br><br>"+
+            "🌟 <b>Guest of Honour:</b> "+eventInfo.guestOfHonour.name+"<br>("+eventInfo.guestOfHonour.designation+" - Proud Alumnus!)<br><br>"+
+            "Ask me about any specific guest for more details! 😊";
+    }
+    
+    // School Features - Infrastructure
+    if(ql.match(/infrastructure|facility|facilities|lab|library|playground|building|campus/)) {
+        return "🏗️ <b>School Infrastructure:</b><br><br>• "+eventInfo.schoolFeatures.infrastructure.join("<br>• ")+"<br><br>"+
+            "Our campus is designed to provide world-class learning environment! 🌟";
+    }
+    
+    // School Features - Academics
+    if(ql.match(/academic|curriculum|study|syllabus|education|learning|teaching/)) {
+        return "📚 <b>Academic Excellence:</b><br><br>• "+eventInfo.schoolFeatures.academics.join("<br>• ")+"<br><br>"+
+            "We blend traditional values with modern technology! 🎓";
+    }
+    
+    // School Features - Activities
+    if(ql.match(/activities|sports|ncc|scouts|club|extracurricular|extra/)) {
+        return "🎯 <b>Co-curricular Activities:</b><br><br>• "+eventInfo.schoolFeatures.activities.join("<br>• ")+"<br><br>"+
+            "Holistic development is our priority! 💪";
+    }
+    
+    // School Features - Achievements
+    if(ql.match(/achievement|result|success|winner|topper|rank/)) {
+        return "🏆 <b>School Achievements:</b><br><br>• "+eventInfo.schoolFeatures.achievements.join("<br>• ")+"<br><br>"+
+            "Our Learners make us proud every year! 🌟";
+    }
+    
+    // School Features - General/About School
+    if(ql.match(/school|jkkn|about|history|feature|special|unique|why jkkn/)) {
+        return "🏫 <b>About JKKN Matriculation Hr. Sec. School:</b><br><br>"+
+            "📅 <b>Established:</b> "+eventInfo.schoolFeatures.established+"<br>"+
+            "🤖 <b>Recognition:</b> "+eventInfo.schoolFeatures.recognition+"<br>"+
+            "✅ <b>Certifications:</b> "+eventInfo.schoolFeatures.certifications.join(", ")+"<br><br>"+
+            "🌟 <b>Key Highlights:</b><br>"+
+            "• State-of-the-art Smart Classrooms<br>"+
+            "• AI & Robotics integrated curriculum<br>"+
+            "• 100% Board Exam pass rate<br>"+
+            "• Strong Alumni network in top companies<br>"+
+            "• NCC, Sports & Cultural excellence<br><br>"+
+            "Ask about infrastructure, academics, activities, or achievements for more details! 📚";
+    }
+    
+    // AI Empowered School
+    if(ql.match(/ai|artificial intelligence|robot|technology|smart|digital/)) {
+        return "🤖 <b>India's First AI Empowered School!</b><br><br>"+
+            "JKKN is pioneering AI integration in education:<br><br>"+
+            "• AI-powered learning tools in classrooms<br>"+
+            "• Robotics lab for hands-on experience<br>"+
+            "• Digital smart boards in every class<br>"+
+            "• AI chatbot assistance (that's me! 👋)<br>"+
+            "• Computer labs with latest technology<br>"+
+            "• Coding & programming from early grades<br><br>"+
+            "Preparing Learners for the future! 🚀";
+    }
+    
+    // Schedule
+    if(ql.match(/schedule|program|agenda|events|order|itinerary/)) {
+        return "📋 <b>Event Programme:</b><br><br><b>Forenoon:</b><br>"+
+            eventInfo.schedule.slice(0,12).join("<br>")+"<br><br><b>Afternoon:</b><br>"+
+            eventInfo.schedule.slice(12).join("<br>")+"<br><br>"+
+            "A day full of celebrations! 🎊";
+    }
+    
+    // Contact
+    if(ql.match(/contact|phone|call|email|reach|enquiry|inquiry/)) {
+        return "📞 <b>Contact Information:</b><br><br>"+
+            "📱 Phone: "+eventInfo.contact.phone+"<br>"+
+            "✉️ Email: "+eventInfo.contact.email+"<br>"+
+            "🌐 Website: "+eventInfo.contact.website+"<br><br>"+
+            "Feel free to reach out for any queries! 😊";
+    }
+    
+    // Annual Day Info
+    if(ql.match(/annual day|celebration|what is|56th/)) {
+        return "🎉 <b>56th Annual Day Celebration</b><br><br>"+
+            "Theme: <i>\"Honouring the Past, Empowering the Future\"</i><br><br>"+
+            "📅 Date: "+eventInfo.date+"<br>"+
+            "⏰ Time: "+eventInfo.time+"<br>"+
+            "📍 Venue: "+eventInfo.venue.name+"<br><br>"+
+            "Join us as we celebrate 56 glorious years of educational excellence with distinguished guests, prize distribution, and spectacular cultural performances! 🌟";
+    }
+    
+    // Prize Distribution
+    if(ql.match(/prize|award|distribution|medal|certificate/)) {
+        return "🏆 <b>Prize Distribution:</b><br><br>"+
+            "Outstanding Learners will be honored for:<br>"+
+            "• Academic Excellence<br>"+
+            "• Sports Achievements<br>"+
+            "• Cultural Competitions<br>"+
+            "• Best Attendance<br>"+
+            "• Special Talents<br><br>"+
+            "Prizes will be distributed by our distinguished guests! 🎖️";
+    }
+    
+    // Cultural Programs
+    if(ql.match(/cultural|dance|music|performance|drama|song/)) {
+        return "💃 <b>Cultural Programme:</b><br><br>"+
+            "Get ready for spectacular performances:<br>"+
+            "• Classical & Folk Dances<br>"+
+            "• Musical performances<br>"+
+            "• Drama & Skits<br>"+
+            "• Choir singing<br>"+
+            "• Special themed performances<br><br>"+
+            "Our talented Learners will showcase their skills! 🎭";
+    }
+    
+    // Dress Code
+    if(ql.match(/dress|wear|attire|costume|uniform/)) {
+        return "👔 <b>Dress Code:</b><br><br>"+
+            "👨‍👩‍👧‍👦 <b>For Guests:</b> Formal or Traditional attire<br>"+
+            "👧 <b>For Learners:</b> Performance costumes as assigned<br>"+
+            "👨‍🏫 <b>For Learning Facilitators:</b> Formal dress<br><br>"+
+            "Looking forward to seeing everyone dressed elegantly! ✨";
+    }
+    
+    // Greetings
+    if(ql.match(/hello|hi|hey|good morning|good afternoon|good evening/)) {
+        return "👋 Hello! Welcome to JKKN Annual Day Assistant!<br><br>"+
+            "I can help you with:<br>"+
+            "📅 Event date & time<br>"+
+            "📍 Venue & directions<br>"+
+            "👤 Guest information<br>"+
+            "🏫 School features<br>"+
+            "📋 Program schedule<br>"+
+            "📞 Contact details<br><br>"+
+            "What would you like to know? 😊";
+    }
+    
+    // Thanks
+    if(ql.match(/thank|thanks|thx/)) return "😊 You're most welcome! We look forward to seeing you at the 56th Annual Day celebration! 🎉";
+    
+    // Help
+    if(ql.match(/help|assist|support|what can you/)) {
+        return "🤖 <b>I'm your JKKN Annual Day Assistant!</b><br><br>"+
+            "I can tell you about:<br>"+
+            "📅 Event date, time & schedule<br>"+
+            "📍 Venue location & directions<br>"+
+            "👑 Chairperson - Smt. N. Sendamaraai<br>"+
+            "🏛️ Managing Director - Shri. S. Ommsharravana<br>"+
+            "👤 Chief Guest - Dr. Parveen Sultana<br>"+
+            "🌟 Guest of Honour - Er. R.B. Gogulram<br>"+
+            "🏫 School features & achievements<br>"+
+            "🤖 AI Empowered School initiatives<br>"+
+            "📞 Contact information<br><br>"+
+            "Just type your question! 💬";
+    }
+    
+    // Default response
+    return "🤔 I'd be happy to help! Try asking about:<br><br>"+
+        "• When is the event?<br>"+
+        "• Where is the venue?<br>"+
+        "• Who are the guests?<br>"+
+        "• Tell me about the Chief Guest<br>"+
+        "• What are the school features?<br>"+
+        "• What's the program schedule?<br>"+
+        "• Tell me about AI in JKKN<br><br>"+
+        "Or ask anything specific! 😊";
 }
 function toggleChat() { document.getElementById('chatWindow').classList.toggle('active'); }
 function sendMsg() {
